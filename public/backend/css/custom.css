@@ -1,0 +1,317 @@
+.br-sideleft {
+    padding: 0;
+}
+#sidebar {
+    background-color: #263238;
+}
+.sms-profile {
+    margin: 12px 0 10px
+}
+
+.sms-profile > a {
+    padding: 15px;
+    display: block;
+    color: #9ba1b1
+}
+
+.sms-profile > a > img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+    margin-top: 3px
+}
+.img-border {
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+}
+
+.side-menu {
+    list-style: none;
+    padding: 0
+}
+.side-menu ul li .label{
+    position: absolute;
+    right: 10px;
+}
+.side-menu a {
+    color: #9ba1b1
+}
+
+.side-menu > li.active > a, .side-menu > li:hover > a, .sm-sub > ul > li.active > a, .sm-sub > ul > li > a:hover, .tile[class*=bg-] {
+    color: #fff
+}
+
+.side-menu > li {
+    width: 100%;
+    display: block
+}
+
+.side-menu > li > a {
+    display: block;
+    padding: 9px 10px 9px 16px;
+    position: relative;
+    white-space: nowrap;
+    -webkit-transition: color;
+    -o-transition: color;
+    transition: color
+}
+
+.side-menu > li > a > .jtv {
+    font-size: 13px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #4c5365;
+    line-height: 29px;
+    margin-right: 7px;
+    text-align: center
+}
+
+.side-menu > li > a .label {
+    position: absolute;
+    right: 12px
+}
+
+.sm-sub, .sm-sub > ul {
+    position: relative
+}
+
+.dropdown-header .actions, .t-header .actions {
+    right: 0;
+    top: 0
+}
+
+.side-menu > li.active > a {
+    background: #1f2430
+}
+
+.side-menu > li.active > a .jtv {
+    background: #38445f;
+    color: #fff
+}
+
+.sm-sub:not(.active) > ul {
+    display: none
+}
+
+.sm-sub > ul {
+    width: 100%;
+    padding: 0 0 0 27px;
+    background: #16181e;
+    margin-bottom: 0;
+    border: 0;
+    list-style: none
+}
+
+.sm-sub > ul:before {
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    background: #1f2229;
+    left: 30px;
+    top: 0
+}
+
+.sm-sub > ul > li > a {
+    padding: 7px 18px 7px 28px;
+    font-size: 12px;
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    -webkit-transition: color;
+    -o-transition: color;
+    transition: color
+}
+
+.sm-sub > ul > li > a:before {
+    width: 8px;
+    height: 1px;
+    background: #22252d;
+    position: absolute;
+    left: 4px;
+    top: 14px
+}
+
+.sm-sub > ul > li:first-child > a {
+    padding-top: 13px
+}
+
+.sm-sub > ul > li:first-child > a:before {
+    top: 20px
+}
+
+.sm-sub > ul > li:last-child > a {
+    padding-bottom: 13px
+}
+
+.side-menu > li.active > a {
+    border-left: 2px solid #f99a3e;
+}
+.side-menu > li.active > a {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background-color: #18222f;
+}
+
+.sm-sub > ul {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background-color: #18222f;
+    margin: 0;
+}
+.side-menu i {
+    padding: 0 10px 0 0;
+    font-size: 1.15em;
+}
+.sm-sub > ul:before {
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    background: black;
+    left: 30px;
+    top: 0;
+}
+.sm-sub > ul:before, .sm-sub > ul > li > a:before {
+    content: "";
+}
+.sm-sub > ul > li:first-child > a:before {
+    top: 20px;
+}
+.sm-sub > ul > li > a:before {
+    width: 8px;
+    height: 1px;
+    background: black;
+    position: absolute;
+    left: 4px;
+    top: 14px;
+}
+
+.sm-sub > ul:before, .sm-sub > ul > li > a:before {
+    content: "";
+}
+.label {
+    border-radius: 1px;
+    padding: 4px 5px 3px;
+}
+.label {
+    display: inline;
+    font-size: 75%;
+    font-weight: 700;
+    color: #fff;
+    vertical-align: baseline;
+}
+
+.badge, .label {
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    background-color: #f89647 !important;
+    border-color: #f89647 !important;
+}
+.pagination > li > a, .pagination > li > span {
+    border-radius: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 28px;
+}
+.pagination .page-item .page-link {
+    padding: 0;
+}
+.form-control {
+    width: 100%;
+    height: 35px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.btn-primary {
+    background-color: #f99a3e;
+    border-color: #f99a3e;
+}
+select.form-control:not([size]):not([multiple]) {
+    height: 35px;
+}
+.panel {
+    border-bottom: none;
+}
+.tile {
+    background-color: #fff;
+    margin-bottom: 30px;
+    position: relative;
+}
+.t-header:not(.th-alt) {
+    padding: 20px;
+}
+button, html [type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: unset !important;
+}
+.rr-search {
+    border-bottom: 5px solid #ecf0f5;
+}
+.rr-search-bottom {
+    border-top: 5px solid #ecf0f5;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+.table {
+    margin-bottom: 20px;
+}
+.t-footer {
+    padding: 20px
+}
+.sweet-alert h2 {
+    font-size: 16px;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+.sweet-alert .lead {
+    font-size: 13px;
+}
+.text-muted {
+    color: #828282;
+}
+.sweet-alert .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin: 20px 2px 0;
+}
+.btn:focus, .sp-container button:focus, .btn.focus, .sp-container button.focus {
+    box-shadow: unset !important;
+}
+.error-message {
+    color: #fff;
+    background: #ff0000;
+    padding: 5px;
+    position: absolute;
+    margin-top: 2px;
+    font-size: 12px;
+    z-index: 1000;
+}
+.error {
+    border: 1px solid #ff0000;
+}
+#PagesTable .form-inline {
+    display: unset !important;
+}
+@media (min-width: 576px) {
+    #PagesTable .form-inline label {
+         display: unset !important;
+    }
+}
+.page-item {
+    padding: 0 !important;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #ddd;
+}
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

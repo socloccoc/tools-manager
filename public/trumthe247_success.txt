@@ -1,0 +1,5 @@
+21:22:53 27/08/2019 - {"status":1,"desc":"Nạp thẻ thành công, đợi duyệt.","amount":20000,"card_data":null}
+21:23:24 27/08/2019 - đã gọi vào validate
+21:23:24 27/08/2019 - {"status":"-1","desc":"Th\u1ebb c\u00e0o kh\u00f4ng h\u1ee3p l\u1ec7 ho\u1eb7c \u0111\u00e3 \u0111\u01b0\u1ee3c s\u1eed d\u1ee5ng.","content":"1","re_process":"0","card_data":{"serial":"11111111111113","pin":"111111111111114","card_type":"VTT2","card_type_str":"Viettel2","amount":"20000","real_amount":"13000","charge_time":"21:22:53 27\/08\/2019"},"is_auto_process":"1","api_key":"503c76cbf0ab08f5c58400918a9c604c","api_secret":"b83166df977b9c45dccf5df39998c77d"}
+21:33:34 27/08/2019 - {"status":1,"desc":"Nạp thẻ thành công, đợi duyệt.","amount":20000,"card_data":null}
+21:33:52 27/08/2019 - {"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}
