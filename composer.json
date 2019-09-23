@@ -56,7 +56,8 @@
             "Informatics\\Users\\": "packages/informatics/users/src",
             "Informatics\\Dashboard\\": "packages/informatics/dashboard/src",
             "Informatics\\Admin\\": "packages/informatics/admin/src",
-            "Informatics\\Agency\\": "packages/informatics/agency/src"
+            "Informatics\\Agency\\": "packages/informatics/agency/src",
+            "Informatics\\Tool\\": "packages/informatics/tool/src"
         }
     },
     "minimum-stability": "dev",

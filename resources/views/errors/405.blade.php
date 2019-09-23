@@ -1,4 +1,4 @@
-@extends('base::layouts.master')
+@extends('base::layout.master')
 
 @section('content')
     <div class="login-box">

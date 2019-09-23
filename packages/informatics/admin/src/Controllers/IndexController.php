@@ -3,7 +3,7 @@
 namespace Informatics\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
-use Informatics\Admin\Requests\SystemAdminCreateRequest;
+use Informatics\Admin\Requests\ToolCreateRequest;
 use Informatics\Admin\Requests\SystemAdminUpdateRequest;
 use Informatics\Users\Repositories\Db\DbUsersRepository as UserRepo;
 use Sentinel;
@@ -105,7 +105,7 @@ class IndexController extends Controller
      * @return $this
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(SystemAdminCreateRequest $request)
+    public function store(ToolCreateRequest $request)
     {
         //Form Data
         $newUser = $request->only('username', 'email', 'password', 'name');

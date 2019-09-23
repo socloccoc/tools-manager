@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/informatics/base/src" isTestSource="true" packagePrefix="Informatics\Base\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/informatics/dashboard/src" isTestSource="true" packagePrefix="Informatics\Dashboard\" />
       <sourceFolder url="file://$MODULE_DIR$/packages/informatics/agency/src" isTestSource="true" packagePrefix="Informatics\Agency\" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/informatics/tool/src" isTestSource="true" packagePrefix="Informatics\Tool\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/aws/aws-sdk-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-dump-server" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bonecms/laravel-captcha" />
