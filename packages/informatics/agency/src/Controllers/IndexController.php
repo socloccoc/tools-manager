@@ -18,6 +18,7 @@ use Redirect;
 class IndexController extends Controller
 {
     const ADD_ACCOUNT_SUCCESS_MSG = 'Thêm tài khoản thành công !';
+
     /**
      *  Display a listing of Admin
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -47,43 +48,17 @@ class IndexController extends Controller
         //Getting list of sortable columns
         $columns = $this->getSortableColumn();
 
-        return view('admin::index.index', compact('admins', 'columns', 'pagination', 'filters', 'roles'));
+        return view('agency::index.index', compact('admins', 'columns', 'pagination', 'filters', 'roles'));
 
-    }
-
-    /**
-     * This function used to get the list of users available in drop Down.
-     *
-     * @param void
-     * @return array $roles
-     * @author Toinn
-     */
-    public function getUserRoles()
-    {
-
-        $roles = array();
-
-        if (Permission::isSuperAdmin()) {
-            $roles = [
-                '1' => 'Super Admin',
-                '2' => 'System Admin',
-            ];
-        } elseif (Permission::isSystemAdmin()) {
-            $roles = [
-                '2' => 'System Admin',
-            ];
-        }
-
-        return $roles;
     }
 
     public function getSortableColumn()
     {
         $columns = array(
-            'users.name' => 'Name',
-            'users.email' => 'Email',
-            'roleName.name' => 'Role',
-            'users.point' => 'Point',
+            'users.name'       => 'Name',
+            'users.email'      => 'Email',
+            'roleName.name'    => 'Role',
+            'users.point'      => 'Point',
             'users.last_login' => 'Last Login',
         );
         return Helper::getSortableColumnOnArray($columns);
@@ -95,11 +70,10 @@ class IndexController extends Controller
      */
     public function create()
     {
-        $roles = $this->getUserRoles();
-        return view('admin::create.create', compact('roles'));
+        return view('agency::create.create');
     }
 
-     /**
+    /**
      * Function to add a new account into the system
      * @param Request $request
      * @return $this
@@ -113,54 +87,51 @@ class IndexController extends Controller
         $userRepo = new UserRepo();
         //Creating new user
         $user = $userRepo->insert($newUser);
-        $data['role'] = 2;
+        $data['role'] = 3;
 
         //Setting user Role
         $role = Sentinel::findRoleById($data['role']);
-       
+
         $role->users()->attach($user);
 
-        return Redirect::route('admin.index')
-            ->withMessage('Bạn đã thêm thành công một đại lý !');
+        return Redirect::route('agency.index')
+            ->withMessage('Bạn đã thêm thành công một người dùng !');
     }
 
     public function edit($id)
     {
         $currentID = Sentinel::getUser()->id;
-        if (Permission::checkRole($currentID, 'super-admin')) {
-            if ($currentID != $id && Permission::isAgency()) {
+        if (Permission::checkRole($currentID, 'agency')) {
+            if ($currentID != $id && Permission::isUser()) {
                 abort(405);
-            }else{
+            } else {
                 $userRepo = new UserRepo();
-                $agency = $userRepo->getUserDetailById($id);
-                if (Permission::isSuperAdmin() || $currentID == $id && Permission::checkRole($id, 'super-admin')) {
-                    return view('admin::create.create', compact( 'agency'));
-                }else{
-                    abort(404);
-                }
+                $user = $userRepo->getUserDetailById($id);
+                return view('agency::create.create', compact('user'));
             }
         }else{
-            return redirect('manager/admin')
+            return redirect('manager/user')
             ->with('error_message', 'Either User Not Found or Editing in a wrong role.');
         }
+}
+
+public
+function update(SystemAdminUpdateRequest $request, $userId)
+{
+    $userRepo = new UserRepo();
+    $userDetail = $userRepo->getUserDetailById($userId);
+
+    if ($userDetail->email != $request->get('email')) {
+        $userData['email'] = $request->get('email');
     }
 
-    public function update(SystemAdminUpdateRequest $request,  $userId)
-    {
-        $userRepo = new UserRepo();
-        $userDetail = $userRepo->getUserDetailById($userId);
-        
-        if ($userDetail->email != $request->get('email')) {
-            $userData['email'] = $request->get('email');
-        }
+    $userData['name'] = $request->get('name');
+    $userData['username'] = $request->get('username');
+    $userRepo->update($userData, $userId);
 
-        $userData['name'] = $request->get('name');
-        $userData['username'] = $request->get('username');
-        $userRepo->update($userData, $userId);
+    return Redirect::back()
+        ->withMessage('Cập nhật thông tin người dùng thành công');
 
-        return Redirect::back()
-        ->withMessage('Cập nhật thông tin đại lý thành công');
-
-    }
+}
 
 }

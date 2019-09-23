@@ -30,10 +30,14 @@ Route::get('/logout', [
 
 Route::group(['namespace' => 'App\Http\Controllers\FrontEnd'], function() {
 
-    Route::get('/', [
-        'as' => 'home',
-        'uses' => 'HomeController@index'
-    ]);
+    Route::match(['get', 'post'], '/', function(){
+        return redirect('/login');
+    });
+
+//    Route::get('/', [
+//        'as' => 'home',
+//        'uses' => 'HomeController@index'
+//    ]);
 
     Route::get('/tran/acc', [
         'middleware' => 'loggedIn',

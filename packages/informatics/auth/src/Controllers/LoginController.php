@@ -2,6 +2,7 @@
 
 namespace Informatics\Auth\Controllers;
 
+use App\Helpers\PermissionHelper;
 use App\Http\Controllers\Controller;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Illuminate\Http\Request;
@@ -84,7 +85,13 @@ class LoginController extends Controller
             Session::forget('previousUrl');
             return Redirect::to($url);
         }
-        return Redirect::intended('manager/admin');
+        if(PermissionHelper::isSuperAdmin()){
+            return Redirect::intended('manager/admin');
+        } elseif (PermissionHelper::isAgency()){
+            return Redirect::intended('manager/user');
+        }else{
+
+        }
     }
 
     /**

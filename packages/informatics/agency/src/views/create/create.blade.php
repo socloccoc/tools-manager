@@ -1,15 +1,15 @@
 @extends('base::layout.master')
 
 @section('breadcrumb')
-    @if(isset($agency->id) && !empty($agency->id))
-        @include('base::layout.partials.breadcrumb', ['title'=>'Cập nhật thông tin đại lý', 'breadcrumbs'=>[
+    @if(isset($user->id) && !empty($user->id))
+        @include('base::layout.partials.breadcrumb', ['title'=>'Cập nhật thông tin người dùng', 'breadcrumbs'=>[
             ['url'=>'/manager', 'label'=>'Bảng điều khiển'],
-            ['label'=>'Cập nhật thông tin đại lý'],
+            ['label'=>'Cập nhật thông tin người dùng'],
         ]])
     @else
-        @include('base::layout.partials.breadcrumb', ['title'=>'Thêm mới đại lý', 'breadcrumbs'=>[
+        @include('base::layout.partials.breadcrumb', ['title'=>'Thêm mới người dùng', 'breadcrumbs'=>[
             ['url'=>'/manager', 'label'=>'Bảng điều khiển'],
-            ['label'=>'Thêm mới đại lý'],
+            ['label'=>'Thêm mới người dùng'],
         ]])
     @endif
 
@@ -29,8 +29,8 @@
                     <div class="tab-pane active" id="tab_1">
                         <div class="row mg-t-80">
                             <div class="col-sm-12">
-                                @if(isset($agency->id) && !empty($agency->id))
-                                    {!! Form::open( array('route' => array('admin.update', $agency->id), 'role' => 'form', 'method' => 'PUT')) !!}
+                                @if(isset($user->id) && !empty($user->id))
+                                    {!! Form::open( array('route' => array('admin.update', $user->id), 'role' => 'form', 'method' => 'PUT')) !!}
                                 @else
                                     {!! Form::open( array('route' => array('admin.store'), 'role' => 'form', 'method' => 'POST', 'autocomplete'=>"off")) !!}
                                 @endif
@@ -41,7 +41,7 @@
                                             {!! Form::label('username', 'Tài khoản',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
-                                            {!! Form::text('username',isset($agency->username)?$agency->username:'',['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
+                                            {!! Form::text('username',isset($user->username)?$user->username:'',['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -52,12 +52,12 @@
                                             {!! Form::label('email', 'Email',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
-                                            {!! Form::text('email',isset($agency->email)?$agency->email:'',['placeholder'=>'Email','class' => 'form-control']) !!}
+                                            {!! Form::text('email',isset($user->email)?$user->email:'',['placeholder'=>'Email','class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                 </div>
 
-                                @if(!isset($agency))
+                                @if(!isset($user))
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-2">
@@ -87,14 +87,14 @@
                                             {!! Form::label('name', 'Họ tên',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
-                                            {!! Form::text('name',isset($agency->full_name)?$agency->full_name:'',['placeholder'=>'Họ tên','class' => 'form-control']) !!}
+                                            {!! Form::text('name',isset($user->full_name)?$user->full_name:'',['placeholder'=>'Họ tên','class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="clearfix">
                                     <a href="{{URL::route('admin.index') }}" class="btn btn-link pull-left"><< Back</a>
-                                    @if(isset($agency->id))
+                                    @if(isset($user->id))
                                         {!! Form::submit('Update',array('class'=>'btn btn-primary pull-left','id'=>'updateSystemProfileBtn')) !!}
                                     @else
                                         {!! Form::submit('Save',array('class'=>'btn btn-primary pull-left')) !!}
