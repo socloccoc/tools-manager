@@ -5,9 +5,8 @@ return [
     /*
      * menu navigation super admin
      */
-
     'super-admin' => [
-        'Dashboard' => 'admin.dashboard',
+        'Dashboard' => 'admin.index',
         'Đại lý'    => [
             'Danh sách đại lý' => 'admin.index',
             'Thêm mới đại lý'  => 'admin.create',
@@ -21,9 +20,8 @@ return [
     /*
      * menu navigation system admin
      */
-
     'agency' => [
-        'Dashboard'  => 'admin.dashboard',
+        'Dashboard'  => 'user.index',
         'Người dùng' => [
             'Danh sách người dùng' => 'user.index',
             'Thêm mới người dùng'  => 'user.create'
@@ -33,7 +31,6 @@ return [
     /*
     * Icons for all
     */
-
     'Icons' => [
         'Dashboard'        => '<i class="fa fa-home"></i>',
         'Tài khoản'        => '<i class="fa fa-bar-chart"></i>',

@@ -4,9 +4,15 @@ namespace Informatics\Agency\Controllers;
 
 use App\Helpers\BasicHelper;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Informatics\Agency\Requests\UserCreateRequest;
 use Informatics\Agency\Requests\UserUpdateRequest;
+use Informatics\Base\Models\AddPointHistory;
+use Informatics\Base\Models\UserTool;
+use Informatics\Tool\Models\Tool;
 use Informatics\Users\Repositories\Db\DbUsersRepository as UserRepo;
+use Mockery\Exception;
 use Sentinel;
 use Illuminate\Http\Request;
 use Input;
@@ -18,7 +24,6 @@ use Redirect;
 
 class IndexController extends Controller
 {
-    const ADD_ACCOUNT_SUCCESS_MSG = 'Thêm tài khoản thành công !';
 
     /**
      *  Display a listing of Admin
@@ -70,7 +75,8 @@ class IndexController extends Controller
      */
     public function create()
     {
-        return view('agency::create.create');
+        $tools = Tool::all();
+        return view('agency::create.create', compact('tools'));
     }
 
     /**
@@ -81,23 +87,42 @@ class IndexController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        //Form Data
-        $newUser = $request->except('_token', 'password_confirmation');
-        $agencyId = BasicHelper::getUserDetails()->id;
-        $newUser['parent_id'] = $agencyId;
-        $data = $request->all();
-        $userRepo = new UserRepo();
-        //Creating new user
-        $user = $userRepo->insert($newUser);
-        $data['role'] = config('constants.roles.user');
+        try {
+            $newUser = $request->only('username', 'email', 'password', 'name');
+            DB::beginTransaction();
+            $agencyId = BasicHelper::getUserDetails()->id;
+            $newUser['parent_id'] = $agencyId;
+            $data = $request->all();
+            $userRepo = new UserRepo();
+            //Creating new user
+            $user = $userRepo->insert($newUser);
+            $data['role'] = config('constants.roles.user');
 
-        //Setting user Role
-        $role = Sentinel::findRoleById($data['role']);
+            //Setting user Role
+            $role = Sentinel::findRoleById($data['role']);
+            $role->users()->attach($user);
 
-        $role->users()->attach($user);
+            //Insert tool
+            $tools = Tool::all();
+            if (count($tools) > 0) {
+                $toolData = [];
+                $pointHistoryData = [];
+                foreach ($tools as $tool) {
+                    $toolData[] = ['user_id' => $user['id'], 'tool_id' => $tool['id'], 'key' => $request['tool_' . $tool['id']], 'total_point' => $request['point_' . $tool['id']], 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                    $pointHistoryData[] = ['sender_id' => $agencyId, 'receiver_id' => $user['id'], 'tool_id' => $tool['id'], 'key' => $request['tool_' . $tool['id']], 'point' => $request['point_' . $tool['id']], 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                }
+                UserTool::insert($toolData);
+            }
 
-        return Redirect::route('agency.index')
-            ->withMessage('Bạn đã thêm thành công một người dùng !');
+            //Insert point history
+            AddPointHistory::insert($pointHistoryData);
+
+            DB::commit();
+            return redirect('manager/user')->with('message', 'Thêm người dùng thành công !');
+        } catch (\Exception $ex) {
+            DB::rollBack();
+            return redirect('manager/user')->with('error_message', 'Either User Not Found or Editing in a wrong role.');
+        }
     }
 
     public function edit($id)
@@ -107,33 +132,32 @@ class IndexController extends Controller
             if ($currentID != $id && Permission::isUser()) {
                 abort(405);
             } else {
+                $tools = Tool::all();
+//                $userTool = UserTool::join('tools')
                 $userRepo = new UserRepo();
                 $user = $userRepo->getUserDetailById($id);
-                return view('agency::create.create', compact('user'));
+                return view('agency::create.create', compact('user', 'tools'));
             }
-        }else{
-            return redirect('manager/user')
-            ->with('error_message', 'Either User Not Found or Editing in a wrong role.');
+        } else {
+            return redirect('manager/user')->with('error_message', 'Either User Not Found or Editing in a wrong role.');
         }
-}
-
-public
-function update(UserUpdateRequest $request, $userId)
-{
-    $userRepo = new UserRepo();
-    $userDetail = $userRepo->getUserDetailById($userId);
-
-    if ($userDetail->email != $request->get('email')) {
-        $userData['email'] = $request->get('email');
     }
 
-    $userData['name'] = $request->get('name');
-    $userData['username'] = $request->get('username');
-    $userRepo->update($userData, $userId);
+    public function update(UserUpdateRequest $request, $userId)
+    {
+        $userRepo = new UserRepo();
+        $userDetail = $userRepo->getUserDetailById($userId);
 
-    return Redirect::back()
-        ->withMessage('Cập nhật thông tin người dùng thành công');
+        if ($userDetail->email != $request->get('email')) {
+            $userData['email'] = $request->get('email');
+        }
 
-}
+        $userData['name'] = $request->get('name');
+        $userData['username'] = $request->get('username');
+        $userRepo->update($userData, $userId);
+
+        return Redirect::back()->withMessage('Cập nhật thông tin người dùng thành công');
+
+    }
 
 }
