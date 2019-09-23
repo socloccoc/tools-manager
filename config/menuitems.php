@@ -24,8 +24,8 @@ return [
     'agency' => [
         'Dashboard' => 'admin.dashboard',
         'Người dùng' => [
-            'Danh sách người dùng' => 'users.index',
-            'Thêm mới người dùng' => 'users.create'
+            'Danh sách người dùng' => 'user.index',
+            'Thêm mới người dùng' => 'user.create'
         ],
     ],
 

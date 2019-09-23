@@ -1,6 +1,6 @@
 <?php
 
-namespace Informatics\Admin\Repository\Db;
+namespace Informatics\Agency\Repository\Db;
 
 use App\Helpers\BasicHelper;
 use Informatics\Base\Repositories\Interfaces\BaseOperationsInterface;

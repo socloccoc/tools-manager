@@ -1,17 +1,18 @@
 <?php
 
-namespace Informatics\Admin\Controllers;
+namespace Informatics\Agency\Controllers;
 
+use App\Helpers\BasicHelper;
 use App\Http\Controllers\Controller;
-use Informatics\Admin\Requests\SystemAdminCreateRequest;
-use Informatics\Admin\Requests\SystemAdminUpdateRequest;
+use Informatics\Agency\Requests\UserCreateRequest;
+use Informatics\Agency\Requests\UserUpdateRequest;
 use Informatics\Users\Repositories\Db\DbUsersRepository as UserRepo;
 use Sentinel;
 use Illuminate\Http\Request;
 use Input;
 use Helper;
 use Permission;
-use Informatics\Admin\Repository\Db\DbAdminRepository as AdminRepo;
+use Informatics\Agency\Repository\Db\DbAdminRepository as AdminRepo;
 use Log;
 use Redirect;
 
@@ -26,7 +27,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $roles = $this->getUserRoles();
         $keyword = Input::get('keyword');
 
         // array to show selected values for search conditions
@@ -48,7 +48,7 @@ class IndexController extends Controller
         //Getting list of sortable columns
         $columns = $this->getSortableColumn();
 
-        return view('agency::index.index', compact('admins', 'columns', 'pagination', 'filters', 'roles'));
+        return view('agency::index.index', compact('admins', 'columns', 'pagination', 'filters'));
 
     }
 
@@ -79,15 +79,17 @@ class IndexController extends Controller
      * @return $this
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(SystemAdminCreateRequest $request)
+    public function store(UserCreateRequest $request)
     {
         //Form Data
-        $newUser = $request->only('username', 'email', 'password', 'name');
+        $newUser = $request->except('_token', 'password_confirmation');
+        $agencyId = BasicHelper::getUserDetails()->id;
+        $newUser['parent_id'] = $agencyId;
         $data = $request->all();
         $userRepo = new UserRepo();
         //Creating new user
         $user = $userRepo->insert($newUser);
-        $data['role'] = 3;
+        $data['role'] = config('constants.roles.user');
 
         //Setting user Role
         $role = Sentinel::findRoleById($data['role']);
@@ -116,7 +118,7 @@ class IndexController extends Controller
 }
 
 public
-function update(SystemAdminUpdateRequest $request, $userId)
+function update(UserUpdateRequest $request, $userId)
 {
     $userRepo = new UserRepo();
     $userDetail = $userRepo->getUserDetailById($userId);

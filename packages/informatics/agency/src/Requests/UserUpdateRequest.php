@@ -1,11 +1,11 @@
 <?php
 
-namespace Informatics\Admin\Requests;
+namespace Informatics\Agency\Requests;
 
 use App\Http\Requests\Request;
 use Permission;
 
-class SystemAdminUpdateRequest extends Request
+class UserUpdateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,6 +29,7 @@ class SystemAdminUpdateRequest extends Request
             'username' => 'required|max:255',
             'name' => 'required|max:255',
             'email' => 'required|max:255',
+            'point' => 'numeric|min:0',
         ];
         return $rules;
     }

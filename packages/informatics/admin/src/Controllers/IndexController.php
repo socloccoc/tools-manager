@@ -113,7 +113,7 @@ class IndexController extends Controller
         $userRepo = new UserRepo();
         //Creating new user
         $user = $userRepo->insert($newUser);
-        $data['role'] = 2;
+        $data['role'] = config('constants.roles.agency');;
 
         //Setting user Role
         $role = Sentinel::findRoleById($data['role']);

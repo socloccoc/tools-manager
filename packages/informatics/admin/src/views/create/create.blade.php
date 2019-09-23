@@ -38,7 +38,7 @@
                                 <div class="col-sm-12">
                                     <div class='form-group clearfix'>
                                         <div class="col-sm-2">
-                                            {!! Form::label('username', 'Tài khoản',['class'=>'required']) !!}
+                                            {!! Form::label('username', 'Tài khoản *',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
                                             {!! Form::text('username',isset($agency->username)?$agency->username:'',['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
@@ -49,7 +49,7 @@
                                 <div class="col-sm-12">
                                     <div class='form-group clearfix'>
                                         <div class="col-sm-2">
-                                            {!! Form::label('email', 'Email',['class'=>'required']) !!}
+                                            {!! Form::label('email', 'Email *',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
                                             {!! Form::text('email',isset($agency->email)?$agency->email:'',['placeholder'=>'Email','class' => 'form-control']) !!}
@@ -61,7 +61,7 @@
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-2">
-                                                {!! Form::label('password', 'Mật khẩu',['class'=>'required']) !!}
+                                                {!! Form::label('password', 'Mật khẩu *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-4">
                                                 {!! Form::password('password',['placeholder'=>'Mật khẩu','class' => 'form-control']) !!}
@@ -72,7 +72,7 @@
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-2">
-                                                {!! Form::label('confirm_password', 'Nhập lại mật khẩu',['class'=>'required']) !!}
+                                                {!! Form::label('confirm_password', 'Nhập lại mật khẩu *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-4">
                                                 {!! Form::password('password_confirmation',['placeholder'=>'Nhập lại mật khẩu','class' => 'form-control']) !!}
@@ -84,7 +84,7 @@
                                 <div class="col-sm-12">
                                     <div class='form-group clearfix'>
                                         <div class="col-sm-2">
-                                            {!! Form::label('name', 'Họ tên',['class'=>'required']) !!}
+                                            {!! Form::label('name', 'Họ tên *',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
                                             {!! Form::text('name',isset($agency->full_name)?$agency->full_name:'',['placeholder'=>'Họ tên','class' => 'form-control']) !!}
@@ -99,7 +99,6 @@
                                     @else
                                         {!! Form::submit('Save',array('class'=>'btn btn-primary pull-left')) !!}
                                     @endif
-
                                 </div>
                                 {!! Form::close() !!}
                             </div>

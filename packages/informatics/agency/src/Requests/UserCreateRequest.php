@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Informatics\Admin\Requests;
+namespace Informatics\Agency\Requests;
 
 use App\Http\Requests\Request;
 use Permission;
 
-class SystemAdminCreateRequest extends Request
+class UserCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,6 +31,7 @@ class SystemAdminCreateRequest extends Request
             'email' => 'required|max:50|unique:users,email',
             'password' => 'required|confirmed|min:6|max:50',
             'password_confirmation' => 'required|min:6',
+            'point' => 'numeric|min:0',
         ];
 
         return $rules;

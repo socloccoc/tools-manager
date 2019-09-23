@@ -30,64 +30,146 @@
                         <div class="row mg-t-80">
                             <div class="col-sm-12">
                                 @if(isset($user->id) && !empty($user->id))
-                                    {!! Form::open( array('route' => array('admin.update', $user->id), 'role' => 'form', 'method' => 'PUT')) !!}
+                                    {!! Form::open( array('route' => array('user.update', $user->id), 'role' => 'form', 'method' => 'PUT')) !!}
                                 @else
-                                    {!! Form::open( array('route' => array('admin.store'), 'role' => 'form', 'method' => 'POST', 'autocomplete'=>"off")) !!}
+                                    {!! Form::open( array('route' => array('user.store'), 'role' => 'form', 'method' => 'POST', 'autocomplete'=>"off")) !!}
                                 @endif
-
-                                <div class="col-sm-12">
-                                    <div class='form-group clearfix'>
-                                        <div class="col-sm-2">
-                                            {!! Form::label('username', 'Tài khoản',['class'=>'required']) !!}
-                                        </div>
-                                        <div class="col-sm-4">
-                                            {!! Form::text('username',isset($user->username)?$user->username:'',['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class='form-group clearfix'>
-                                        <div class="col-sm-2">
-                                            {!! Form::label('email', 'Email',['class'=>'required']) !!}
-                                        </div>
-                                        <div class="col-sm-4">
-                                            {!! Form::text('email',isset($user->email)?$user->email:'',['placeholder'=>'Email','class' => 'form-control']) !!}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if(!isset($user))
+                                <div class="col-sm-6">
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
-                                            <div class="col-sm-2">
-                                                {!! Form::label('password', 'Mật khẩu',['class'=>'required']) !!}
+                                            <div class="col-sm-3">
+                                                {!! Form::label('username', 'Tài khoản *',['class'=>'required']) !!}
                                             </div>
-                                            <div class="col-sm-4">
-                                                {!! Form::password('password',['placeholder'=>'Mật khẩu','class' => 'form-control']) !!}
+                                            <div class="col-sm-7">
+                                                {!! Form::text('username',isset($user->username)?$user->username:'',['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
-                                            <div class="col-sm-2">
-                                                {!! Form::label('confirm_password', 'Nhập lại mật khẩu',['class'=>'required']) !!}
+                                            <div class="col-sm-3">
+                                                {!! Form::label('email', 'Email *',['class'=>'required']) !!}
                                             </div>
-                                            <div class="col-sm-4">
-                                                {!! Form::password('password_confirmation',['placeholder'=>'Nhập lại mật khẩu','class' => 'form-control']) !!}
+                                            <div class="col-sm-7">
+                                                {!! Form::text('email',isset($user->email)?$user->email:'',['placeholder'=>'Email','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
-                                @endif
 
-                                <div class="col-sm-12">
-                                    <div class='form-group clearfix'>
-                                        <div class="col-sm-2">
-                                            {!! Form::label('name', 'Họ tên',['class'=>'required']) !!}
+                                    @if(!isset($user))
+                                        <div class="col-sm-12">
+                                            <div class='form-group clearfix'>
+                                                <div class="col-sm-3">
+                                                    {!! Form::label('password', 'Mật khẩu *',['class'=>'required']) !!}
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    {!! Form::password('password',['placeholder'=>'Mật khẩu','class' => 'form-control']) !!}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4">
-                                            {!! Form::text('name',isset($user->full_name)?$user->full_name:'',['placeholder'=>'Họ tên','class' => 'form-control']) !!}
+
+                                        <div class="col-sm-12">
+                                            <div class='form-group clearfix'>
+                                                <div class="col-sm-3">
+                                                    {!! Form::label('confirm_password', 'Nhập lại mật khẩu *',['class'=>'required']) !!}
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    {!! Form::password('password_confirmation',['placeholder'=>'Nhập lại mật khẩu','class' => 'form-control']) !!}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('name', 'Họ tên *',['class'=>'required']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                                {!! Form::text('name',isset($user->full_name)?$user->full_name:'',['placeholder'=>'Họ tên','class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                            {!! Form::label('reg_nick_key', 'Reg nick',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                            {!! Form::text('reg_nick_key',isset($user->reg_nick_key) ? $user->reg_nick_key : '',['placeholder'=>'Reg nick ( key )', 'class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                            {!! Form::label('sub_view_key', 'Sub view',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                            {!! Form::text('sub_view_key',isset($user->sub_view_key) ? $user->sub_view_key : '',['placeholder'=>'Sub view ( key )', 'class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('order_key', 'Order',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                                {!! Form::text('order_key',isset($user->order_key) ? $user->order_key : '',['placeholder'=>'Order ( key )', 'class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('order_mobile_key', 'Order mobile',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                                {!! Form::text('order_mobile_key',isset($user->order_mobile_key) ? $user->order_mobile_key : '',['placeholder'=>'Order mobile ( key )', 'class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('seller', 'Seller',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                                {!! Form::text('seller_key',isset($user->seller_key) ? $user->seller_key : '',['placeholder'=>'Seller ( key )', 'class' => 'form-control']) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <hr>
+                                    @if(isset($user))
+                                    <div class="col-sm-6">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('current_point', 'Số point hiện có',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-4">
+                                                {!! 12345 !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <div class="col-sm-6">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('point', 'Thêm point',['class'=>'']) !!}
+                                            </div>
+                                            <div class="col-sm-4">
+                                                {!! Form::number('point', 0, ['placeholder'=>'point', 'class' => 'form-control']) !!}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +181,6 @@
                                     @else
                                         {!! Form::submit('Save',array('class'=>'btn btn-primary pull-left')) !!}
                                     @endif
-
                                 </div>
                                 {!! Form::close() !!}
                             </div>
