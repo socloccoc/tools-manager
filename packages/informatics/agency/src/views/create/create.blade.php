@@ -93,89 +93,26 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
+                                    @forelse($tools as $tool)
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-3">
-                                            {!! Form::label('reg_nick_key', 'Reg nick',['class'=>'']) !!}
+                                                <label>{{ $tool['name'] }}</label>
                                             </div>
-                                            <div class="col-sm-7">
-                                            {!! Form::text('reg_nick_key',isset($user->reg_nick_key) ? $user->reg_nick_key : '',['placeholder'=>'Reg nick ( key )', 'class' => 'form-control']) !!}
+                                            <div class="col-sm-6">
+                                                <input type="text" name="tool_{{ $tool['id'] }}" class="form-control" placeholder="{{ $tool['name'] . ' ( key ) ' }}">
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class='form-group clearfix'>
                                             <div class="col-sm-3">
-                                            {!! Form::label('sub_view_key', 'Sub view',['class'=>'']) !!}
-                                            </div>
-                                            <div class="col-sm-7">
-                                            {!! Form::text('sub_view_key',isset($user->sub_view_key) ? $user->sub_view_key : '',['placeholder'=>'Sub view ( key )', 'class' => 'form-control']) !!}
+                                                <input type="number" name="point_{{ $tool['id'] }}" class="form-control" placeholder="{{ $tool['name'] . ' ( point ) ' }}">
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-sm-12">
-                                        <div class='form-group clearfix'>
-                                            <div class="col-sm-3">
-                                                {!! Form::label('order_key', 'Order',['class'=>'']) !!}
-                                            </div>
-                                            <div class="col-sm-7">
-                                                {!! Form::text('order_key',isset($user->order_key) ? $user->order_key : '',['placeholder'=>'Order ( key )', 'class' => 'form-control']) !!}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class='form-group clearfix'>
-                                            <div class="col-sm-3">
-                                                {!! Form::label('order_mobile_key', 'Order mobile',['class'=>'']) !!}
-                                            </div>
-                                            <div class="col-sm-7">
-                                                {!! Form::text('order_mobile_key',isset($user->order_mobile_key) ? $user->order_mobile_key : '',['placeholder'=>'Order mobile ( key )', 'class' => 'form-control']) !!}
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <div class='form-group clearfix'>
-                                            <div class="col-sm-3">
-                                                {!! Form::label('seller', 'Seller',['class'=>'']) !!}
-                                            </div>
-                                            <div class="col-sm-7">
-                                                {!! Form::text('seller_key',isset($user->seller_key) ? $user->seller_key : '',['placeholder'=>'Seller ( key )', 'class' => 'form-control']) !!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <hr>
-                                    @if(isset($user))
-                                    <div class="col-sm-6">
-                                        <div class='form-group clearfix'>
-                                            <div class="col-sm-3">
-                                                {!! Form::label('current_point', 'Số point hiện có',['class'=>'']) !!}
-                                            </div>
-                                            <div class="col-sm-4">
-                                                {!! 12345 !!}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    <div class="col-sm-6">
-                                        <div class='form-group clearfix'>
-                                            <div class="col-sm-3">
-                                                {!! Form::label('point', 'Thêm point',['class'=>'']) !!}
-                                            </div>
-                                            <div class="col-sm-4">
-                                                {!! Form::number('point', 0, ['placeholder'=>'point', 'class' => 'form-control']) !!}
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @empty
+                                    @endforelse
                                 </div>
 
-                                <div class="clearfix">
-                                    <a href="{{URL::route('admin.index') }}" class="btn btn-link pull-left"><< Back</a>
+                                <div class="col-sm-12 clearfix">
+                                    <a href="{{URL::route('user.index') }}" class="btn btn-link pull-left"><< Back</a>
                                     @if(isset($user->id))
                                         {!! Form::submit('Update',array('class'=>'btn btn-primary pull-left','id'=>'updateSystemProfileBtn')) !!}
                                     @else

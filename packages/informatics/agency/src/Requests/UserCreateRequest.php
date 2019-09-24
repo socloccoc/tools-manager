@@ -26,12 +26,12 @@ class UserCreateRequest extends Request
     public function rules()
     {
         $rules = [
-            'username' => 'required|min:5|max:50|unique:users,username',
-            'name' => 'required|min:5|max:50',
-            'email' => 'required|max:50|unique:users,email',
-            'password' => 'required|confirmed|min:6|max:50',
-            'password_confirmation' => 'required|min:6',
-            'point' => 'numeric|min:0',
+//            'username' => 'required|min:5|max:50|unique:users,username',
+//            'name' => 'required|min:5|max:50',
+//            'email' => 'required|max:50|unique:users,email',
+//            'password' => 'required|confirmed|min:6|max:50',
+//            'password_confirmation' => 'required|min:6',
+//            'point' => 'numeric|min:0',
         ];
 
         return $rules;

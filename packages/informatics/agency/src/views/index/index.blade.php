@@ -32,9 +32,6 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        @if(Permission::isSuperAdmin())
-                            <th></th>
-                        @endif
                         <th></th>
                         <th>{!!$columns['users.name']!!}</th>
                         <th>{!!$columns['users.email']!!}</th>
@@ -50,16 +47,9 @@
                     @if( isset($admins) && count($admins) )
                         @foreach($admins as $admin)
                             <tr>
-                                @if(Permission::isSuperAdmin())
-                                    <td>
-                                        <a href="{{URL::route('admin.edit', $admin->id)}}">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                    </td>
-                                @endif
                                 <td>
-                                    <a href="{{Helper::userProfileLink($admin, 'admin-detail')}}">
-                                        <i class="fa fa-search"></i>
+                                    <a href="{{URL::route('user.edit', $admin->id)}}">
+                                        <i class="fa fa-edit"></i>
                                     </a>
                                 </td>
                                 <td>{!! $admin->full_name !!}</td>

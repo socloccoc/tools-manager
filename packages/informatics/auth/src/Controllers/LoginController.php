@@ -63,7 +63,13 @@ class LoginController extends Controller
         }
         // check for the login
         if (Sentinel::check()) {
-            return $this->afterLoginProcess();
+            if(PermissionHelper::isSuperAdmin()){
+                return Redirect::intended('manager/admin');
+            } elseif (PermissionHelper::isAgency()){
+                return Redirect::intended('manager/user');
+            }else{
+
+            }
         } else {
             return Redirect::back()
                 ->withInput()
