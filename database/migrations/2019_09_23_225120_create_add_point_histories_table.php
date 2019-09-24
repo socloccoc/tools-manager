@@ -17,7 +17,7 @@ class CreateAddPointHistoriesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('sender_id');
             $table->integer('receiver_id');
-            $table->integer('tool_id');
+            $table->integer('app_id');
             $table->integer('point');
             $table->string('key', 50);
             $table->timestamps();

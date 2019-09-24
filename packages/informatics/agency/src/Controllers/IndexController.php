@@ -3,16 +3,16 @@
 namespace Informatics\Agency\Controllers;
 
 use App\Helpers\BasicHelper;
+use App\Helpers\KeyHelper;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Informatics\Agency\Requests\UserCreateRequest;
 use Informatics\Agency\Requests\UserUpdateRequest;
 use Informatics\Base\Models\AddPointHistory;
-use Informatics\Base\Models\UserTool;
+use Informatics\Base\Models\UserApp;
 use Informatics\Tool\Models\Tool;
 use Informatics\Users\Repositories\Db\DbUsersRepository as UserRepo;
-use Mockery\Exception;
 use Sentinel;
 use Illuminate\Http\Request;
 use Input;
@@ -63,7 +63,6 @@ class IndexController extends Controller
             'users.name'       => 'Name',
             'users.email'      => 'Email',
             'roleName.name'    => 'Role',
-            'users.point'      => 'Point',
             'users.last_login' => 'Last Login',
         );
         return Helper::getSortableColumnOnArray($columns);
@@ -75,8 +74,8 @@ class IndexController extends Controller
      */
     public function create()
     {
-        $tools = Tool::all();
-        return view('agency::create.create', compact('tools'));
+        $apps = KeyHelper::apps()['data'];
+        return view('agency::create.create', compact('apps'));
     }
 
     /**
@@ -103,15 +102,28 @@ class IndexController extends Controller
             $role->users()->attach($user);
 
             //Insert tool
-            $tools = Tool::all();
-            if (count($tools) > 0) {
-                $toolData = [];
+            $apps = KeyHelper::apps()['data'];
+            if (count($apps) > 0) {
+                $appData = [];
                 $pointHistoryData = [];
-                foreach ($tools as $tool) {
-                    $toolData[] = ['user_id' => $user['id'], 'tool_id' => $tool['id'], 'key' => $request['tool_' . $tool['id']], 'total_point' => $request['point_' . $tool['id']], 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                    $pointHistoryData[] = ['sender_id' => $agencyId, 'receiver_id' => $user['id'], 'tool_id' => $tool['id'], 'key' => $request['tool_' . $tool['id']], 'point' => $request['point_' . $tool['id']], 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                foreach ($apps as $app) {
+                    $key = $request['app_' . $app['id']];
+                    $point = $request['point_' . $app['id']];
+                    $appData[] = ['user_id' => $user['id'], 'app_id' => $app['id'], 'key' => $key, 'total_point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                    $pointHistoryData[] = ['sender_id' => $agencyId, 'receiver_id' => $user['id'], 'app_id' => $app['id'], 'key' => $key, 'point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+                    if ($key == '') continue;
+                    // validate key
+                    $keyValidate = KeyHelper::validateKey($key, $app['id']);
+                    if ($keyValidate['success'] == false) {
+                        return Redirect::back()->withErrors([$keyValidate['message']]);
+                    }
                 }
-                UserTool::insert($toolData);
+                UserApp::insert($appData);
+            }
+
+            // app point for key
+            foreach ($pointHistoryData as $point) {
+                KeyHelper::addPointforKey($point['key'], $point['point']);
             }
 
             //Insert point history
@@ -121,7 +133,7 @@ class IndexController extends Controller
             return redirect('manager/user')->with('message', 'Thêm người dùng thành công !');
         } catch (\Exception $ex) {
             DB::rollBack();
-            return redirect('manager/user')->with('error_message', 'Either User Not Found or Editing in a wrong role.');
+            return Redirect::back()->withErrors([$ex->getMessage()]);
         }
     }
 

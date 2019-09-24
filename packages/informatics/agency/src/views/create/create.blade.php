@@ -41,7 +41,7 @@
                                                 {!! Form::label('username', 'Tài khoản *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-7">
-                                                {!! Form::text('username',isset($user->username)?$user->username:'',['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
+                                                {!! Form::text('username', isset($user->username) ? $user->username : 'user2', ['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                                 {!! Form::label('email', 'Email *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-7">
-                                                {!! Form::text('email',isset($user->email)?$user->email:'',['placeholder'=>'Email','class' => 'form-control']) !!}
+                                                {!! Form::text('email', isset($user->email) ? $user->email : 'user2@gmail.com', ['placeholder'=>'Email','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                                     {!! Form::label('password', 'Mật khẩu *',['class'=>'required']) !!}
                                                 </div>
                                                 <div class="col-sm-7">
-                                                    {!! Form::password('password',['placeholder'=>'Mật khẩu','class' => 'form-control']) !!}
+                                                    {!! Form::password('password', ['placeholder'=>'Mật khẩu','class' => 'form-control']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                                     {!! Form::label('confirm_password', 'Nhập lại mật khẩu *',['class'=>'required']) !!}
                                                 </div>
                                                 <div class="col-sm-7">
-                                                    {!! Form::password('password_confirmation',['placeholder'=>'Nhập lại mật khẩu','class' => 'form-control']) !!}
+                                                    {!! Form::password('password_confirmation', ['placeholder'=>'Nhập lại mật khẩu','class' => 'form-control']) !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -87,23 +87,23 @@
                                                 {!! Form::label('name', 'Họ tên *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-7">
-                                                {!! Form::text('name',isset($user->full_name)?$user->full_name:'',['placeholder'=>'Họ tên','class' => 'form-control']) !!}
+                                                {!! Form::text('name', isset($user->full_name) ? $user->full_name : 'user2', ['placeholder'=>'Họ tên','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    @forelse($tools as $tool)
+                                    @forelse($apps as $app)
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-3">
-                                                <label>{{ $tool['name'] }}</label>
+                                                <label>{{ $app['name'] }}</label>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text" name="tool_{{ $tool['id'] }}" class="form-control" placeholder="{{ $tool['name'] . ' ( key ) ' }}">
+                                                <input type="text" name="app_{{ $app['id'] }}" class="form-control" placeholder="{{ $app['name'] . ' ( key ) ' }}">
                                             </div>
                                             <div class="col-sm-3">
-                                                <input type="number" name="point_{{ $tool['id'] }}" class="form-control" placeholder="{{ $tool['name'] . ' ( point ) ' }}">
+                                                <input type="number" name="point_{{ $app['id'] }}" class="form-control" placeholder="{{ $app['name'] . ' ( point ) ' }}">
                                             </div>
                                         </div>
                                     </div>

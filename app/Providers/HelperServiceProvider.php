@@ -12,7 +12,8 @@ class HelperServiceProvider extends ServiceProvider
         'Pages',
         'Categories',
         'Menus',
-        'Widgets'
+        'Widgets',
+        'KeyHelper'
     ];
 
     /**

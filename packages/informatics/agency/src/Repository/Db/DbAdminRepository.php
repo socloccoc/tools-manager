@@ -61,7 +61,7 @@ class DbAdminRepository implements BaseOperationsInterface
         $query = DB::table('users')
             ->Join('role_users as usrRoles', 'usrRoles.user_id', '=', 'users.id')
             ->Join('roles as roleName', 'roleName.id', '=', 'usrRoles.role_id')
-            ->select('users.id', 'roleName.name as role', 'users.email', 'users.name as full_name', 'users.last_login', 'users.point as point')
+            ->select('users.id', 'roleName.name as role', 'users.email', 'users.name as full_name', 'users.last_login')
             ->where(function($que) use ( $filters ) {
                 if (isset($filters['Keyword']) && !empty($filters['Keyword'])) {
                     $que->Where(function($que) use ( $filters ) {

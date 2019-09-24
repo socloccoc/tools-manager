@@ -36,7 +36,6 @@
                         <th>{!!$columns['users.name']!!}</th>
                         <th>{!!$columns['users.email']!!}</th>
                         <th>{!!$columns['roleName.name']!!}</th>
-                        <th>{!!$columns['users.point']!!}</th>
                         <th>{!!$columns['users.last_login']!!}</th>
                         @if(Permission::isSuperAdmin())
                             <th></th>
@@ -61,10 +60,6 @@
                                 <td>
                                     {{ $admin->role ? $admin->role : 'N/A'}}
                                 </td>
-                                <td>
-                                    {{ $admin->point ? $admin->point : 'N/A'}}
-                                </td>
-
                                 <td>{!! $admin->last_login && strtotime($admin->last_login) ? date('d/m/Y h:i', strtotime($admin->last_login)) : 'N/A' !!}</td>
                                 @if(Permission::isSuperAdmin())
                                     <td>
