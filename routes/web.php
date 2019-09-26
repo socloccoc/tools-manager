@@ -27,73 +27,31 @@ Route::get('/logout', [
     'uses' => 'Informatics\Auth\Controllers\LoginController@logout'
 ]);
 
+Route::get('/change-password', [
+    'as' => 'change.password.view',
+    'uses' => 'Informatics\Auth\Controllers\LoginController@changePasswordView'
+]);
 
-Route::group(['namespace' => 'App\Http\Controllers\FrontEnd'], function() {
+Route::post('/change-password', [
+    'as' => 'change.password.complete',
+    'uses' => 'Informatics\Auth\Controllers\LoginController@changePasswordComplete'
+]);
 
+Route::group(['namespace' => 'App\Http\Controllers'], function() {
     Route::match(['get', 'post'], '/', function(){
         return redirect('/login');
     });
-
-//    Route::get('/', [
-//        'as' => 'home',
-//        'uses' => 'HomeController@index'
-//    ]);
-
-    Route::get('/tran/acc', [
-        'middleware' => 'loggedIn',
-        'as' => 'purchased.account',
-        'uses' => 'HistoryController@purchasedAccount'
-    ]);
-
-    Route::get('/nap-the', [
-        'middleware' => 'loggedIn',
-        'as' => 'charge.card',
-        'uses' => 'ChargeCardController@index'
-    ]);
-
-    Route::get('/charge-card-history', [
-        'middleware' => 'loggedIn',
-        'as' => 'charge.card.history',
-        'uses' => 'ChargeCardHistoryController@index'
-    ]);
-
-    Route::post('/chargeCard', [
-        'middleware' => 'loggedIn',
-        'as' => 'charge.card.complete',
-        'uses' => 'ChargeCardController@chargeCardComplete'
-    ]);
-
-    Route::get('/user/profile', [
-        'middleware' => 'loggedIn',
-        'as' => 'user.profile',
-        'uses' => 'UserController@profile'
-    ]);
-
-    Route::get('/user/change-password', [
-        'middleware' => 'loggedIn',
-        'as' => 'change.password',
-        'uses' => 'UserController@changePassword'
-    ]);
-
-    Route::post('/user/change-password-complete', [
-        'middleware' => 'loggedIn',
-        'as' => 'change.password.complete',
-        'uses' => 'UserController@changePasswordComplete'
-    ]);
-
-//    Route::post('/user/buyacc', [
-//        'middleware' => 'loggedIn',
-//        'as' => 'buyacc',
-//        'uses' => 'UserController@buyacc'
-//    ]);
-//
-//    Route::group(['prefix' => 'ajax'], function () {
-//        Route::post('getAccountInfo', [
-//            'as' => 'getAccountInfo',
-//            'uses' => 'AjaxController@getAccountInfo'
-//        ]);
-//    });
-
-    Route::get('{slug}', 'HomeController@index')->where('slug', '^(?!.*manager).*$');
-
 });
+//Route::get('/{any}', function ($any) {
+//
+//    return redirect('/login');
+//
+//})->where('all', '(.*)');
+//\Illuminate\Support\Facades\App::missing(function($exception)
+//{
+//    return redirect('/login');
+//});
+//Route::any('{all?}', 'App\Http\Controllers\HomeController@index')->where('all', '(.*)');
+//Route::any('{!all}', function(){
+//    return abort(405);
+//})->where('all', '.*');

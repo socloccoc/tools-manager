@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-sm-3">
                         <button style="margin-top: 24px" type="submit" class="btn btn-primary">Tìm kiếm</button>
-                        <button style="margin-top: 24px" type="submit" class="btn btn-success">Reset</button>
+                        <a href="{{ route('key.index') }}" style="margin-top: 24px" type="submit" class="btn btn-success">Reset</a>
                     </div>
                 </div>
             </form>

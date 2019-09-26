@@ -17,6 +17,11 @@
                 <div class="dropdown-menu dropdown-menu-header wd-200">
                     <ul class="list-unstyled user-profile-nav">
                         <li>
+                            <a href="{{ URL::route('change.password.view') }}">
+                                <i style="padding-right: 8px; margin-left: 3px;" class="fa fa-exchange"></i> Đổi mật khẩu
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ URL::route('logout') }}">
                                 <i class="icon ion-power"></i> Đăng xuất
                             </a>

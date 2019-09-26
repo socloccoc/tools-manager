@@ -22,7 +22,7 @@ return [
     ],
 
     /*
-     * menu navigation system admin
+     * menu navigation agency
      */
     'agency'      => [
         'Dashboard'  => 'user.index',
@@ -33,6 +33,16 @@ return [
         'Key'           => [
             'Danh sách key' => 'key.index',
             'Thêm mới key'  => 'key.create',
+        ],
+    ],
+
+    /*
+     * menu navigation user
+     */
+    'user'      => [
+        'Dashboard'  => 'user-key.index',
+        'Key'           => [
+            'Danh sách key' => 'user-key.index'
         ],
     ],
 

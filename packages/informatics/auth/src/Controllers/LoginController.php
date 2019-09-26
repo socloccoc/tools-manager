@@ -50,7 +50,7 @@ class LoginController extends Controller
             'password' => 'required'
         ], [
             'username.required' => 'Chưa nhập tài khoản',
-            'username.exists' => 'Tài khoản không tồn tại',
+            'username.exists'   => 'Tài khoản không tồn tại',
             'password.required' => 'Chưa nhập mật khẩu'
         ]);
         try {
@@ -63,12 +63,12 @@ class LoginController extends Controller
         }
         // check for the login
         if (Sentinel::check()) {
-            if(PermissionHelper::isSuperAdmin()){
+            if (PermissionHelper::isSuperAdmin()) {
                 return Redirect::intended('manager/admin');
-            } elseif (PermissionHelper::isAgency()){
+            } elseif (PermissionHelper::isAgency()) {
                 return Redirect::intended('manager/user');
-            }else{
-
+            } else {
+                return Redirect::intended('manager/user-key');
             }
         } else {
             return Redirect::back()
@@ -91,12 +91,12 @@ class LoginController extends Controller
             Session::forget('previousUrl');
             return Redirect::to($url);
         }
-        if(PermissionHelper::isSuperAdmin()){
+        if (PermissionHelper::isSuperAdmin()) {
             return Redirect::intended('manager/admin');
-        } elseif (PermissionHelper::isAgency()){
+        } elseif (PermissionHelper::isAgency()) {
             return Redirect::intended('manager/user');
-        }else{
-
+        } else {
+            return Redirect::intended('manager/key-user');
         }
     }
 
@@ -159,9 +159,9 @@ class LoginController extends Controller
         $user = User::updateOrCreate([
             'email' => $user->getEmail(),
         ], [
-            'name' => $user->getName(),
-            $provider => $user->getId(),
-            'avatar' => $user->getAvatar(),
+            'name'     => $user->getName(),
+            $provider  => $user->getId(),
+            'avatar'   => $user->getAvatar(),
             'username' => $user->getId() . '@' . $provider . '.com'
         ]);
         if (!empty($user->id)) {
@@ -174,11 +174,41 @@ class LoginController extends Controller
         }
     }
 
-    public function afterRegistrationProcess($user) {
+    public function afterRegistrationProcess($user)
+    {
         $role = Sentinel::findRoleById(3);
         $role->users()->attach($user);
         // Save log
         Log::info('A user has been created', array('ItemID' => $user->id, 'Module' => 'Users'));
+    }
+
+    public function changePasswordView()
+    {
+        return view('auth::change-password.index');
+    }
+
+    public function changePasswordComplete(Request $request)
+    {
+        $this->validate($request, [
+            'old_password'          => 'required',
+            'password'              => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
+        ], []);
+
+        $hasher = Sentinel::getHasher();
+
+        $oldPassword = $request->old_password;
+        $password = $request->password;
+
+        $user = Sentinel::getUser();
+
+        if (!$hasher->check($oldPassword, $user->password)) {
+            return Redirect::back()->withErrors('Đổi mật khẩu thất bại !');
+        }
+
+        Sentinel::update($user, array('password' => $password));
+
+        return Redirect::back()->withMessage('Thay đổi mật khẩu thành công !');
     }
 
 }

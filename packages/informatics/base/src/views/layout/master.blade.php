@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bracket Responsive Bootstrap 4 Admin Template</title>
+    <title>Tools Manager</title>
 
     @foreach ($stylesheets as $style)
         {!! HTML::style($style) !!}
@@ -27,7 +27,7 @@
 
 <body>
 
-<div class="br-logo"><a href=""><span>[</span>bracket<span>]</span></a></div>
+<div class="br-logo"><a href=""><span>[</span>Manager<span>]</span></a></div>
 
 <?php
     if (Sentinel::check()) {
