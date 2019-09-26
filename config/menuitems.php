@@ -11,6 +11,9 @@ return [
             'Danh sách cộng tác viên' => 'admin.index',
             'Thêm mới cộng tác viên'  => 'admin.create',
         ],
+        'Analytics'     => [
+            'Thống kê' => 'analytics.index'
+        ],
         'Tool'          => [
             'Danh sách tool' => 'tool.index',
             'Thêm mới tool'  => 'tool.create',
@@ -18,7 +21,7 @@ return [
         'Key'           => [
             'Danh sách key' => 'key.index',
             'Thêm mới key'  => 'key.create',
-        ],
+        ]
     ],
 
     /*
@@ -30,7 +33,7 @@ return [
             'Danh sách người dùng' => 'user.index',
             'Thêm mới người dùng'  => 'user.create'
         ],
-        'Key'           => [
+        'Key'        => [
             'Danh sách key' => 'key.index',
             'Thêm mới key'  => 'key.create',
         ],
@@ -39,9 +42,9 @@ return [
     /*
      * menu navigation user
      */
-    'user'      => [
-        'Dashboard'  => 'user-key.index',
-        'Key'           => [
+    'user'        => [
+        'Dashboard' => 'user-key.index',
+        'Key'       => [
             'Danh sách key' => 'user-key.index'
         ],
     ],
@@ -57,6 +60,7 @@ return [
         'Super Admin Tool' => '<i class="fa fa-cogs"></i>',
         'Tool'             => '<i class="fa fa-cogs"></i>',
         'Key'              => '<i class="fa fa-cogs"></i>',
+        'Analytics'        => '<i class="fa fa-cogs"></i>',
         'Bố cục website'   => '<i class="fa fa-cogs"></i>',
         'Pages'            => '<i class="fa fa-cogs"></i>',
     ]

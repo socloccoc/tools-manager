@@ -42,16 +42,3 @@ Route::group(['namespace' => 'App\Http\Controllers'], function() {
         return redirect('/login');
     });
 });
-//Route::get('/{any}', function ($any) {
-//
-//    return redirect('/login');
-//
-//})->where('all', '(.*)');
-//\Illuminate\Support\Facades\App::missing(function($exception)
-//{
-//    return redirect('/login');
-//});
-//Route::any('{all?}', 'App\Http\Controllers\HomeController@index')->where('all', '(.*)');
-//Route::any('{!all}', function(){
-//    return abort(405);
-//})->where('all', '.*');

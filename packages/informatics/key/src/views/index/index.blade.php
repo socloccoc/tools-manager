@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 
-    @include('base::layout.partials.breadcrumb', ['title'=>'Tools', 'breadcrumbs'=>[
+    @include('base::layout.partials.breadcrumb', ['title'=>'Keys', 'breadcrumbs'=>[
         ['url'=>'/user', 'label'=>'Bảng điều khiển'],
-        ['label'=>'Tools'],
+        ['label'=>'Keys'],
     ]])
 
 @endsection

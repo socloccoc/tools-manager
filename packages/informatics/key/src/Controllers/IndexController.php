@@ -140,6 +140,7 @@ class IndexController extends Controller
                 ];
                 $fees[] = [
                     'tool_id'     => $request->tool_id,
+                    'user_id'     => $userCreate->id,
                     'licence_key' => $licenceKey,
                     'value'       => $tool->fee * $request->expire_time,
                     'action'      => config('constants.key_action.create_licence'),
@@ -149,6 +150,7 @@ class IndexController extends Controller
                 if ($request->point_order > 0) {
                     $fees[] = [
                         'tool_id'     => $request->tool_id,
+                        'user_id'     => $userCreate->id,
                         'licence_key' => $licenceKey,
                         'value'       => $request->point_order * 2000,
                         'action'      => config('constants.key_action.add_point'),
@@ -220,6 +222,7 @@ class IndexController extends Controller
         ], []);
         $pointOrder = $request->point_order;
         $numberOfMonths = $request->number_of_months;
+        $userLoginId = BasicHelper::getUserDetails()->id;
         try {
             DB::beginTransaction();
             $key = Key::where('id', $request->modal_key_adjourn_id)->first();
@@ -242,8 +245,8 @@ class IndexController extends Controller
             }
             $tool = Tool::where('id', $key['tool_id'])->first();
             $fees = [
-                ['tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $numberOfMonths * $tool['fee'], 'action' => config('constants.key_action.adjourn'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-                ['tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $pointOrder * 2000, 'action' => config('constants.key_action.add_point'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+                ['user_id' => $userLoginId, 'tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $numberOfMonths * $tool['fee'], 'action' => config('constants.key_action.adjourn'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+                ['user_id' => $userLoginId, 'tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $pointOrder * 2000, 'action' => config('constants.key_action.add_point'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ];
             Fee::insert($fees);
             DB::commit();

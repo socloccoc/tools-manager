@@ -59,7 +59,8 @@
             "Informatics\\Admin\\": "packages/informatics/admin/src",
             "Informatics\\Agency\\": "packages/informatics/agency/src",
             "Informatics\\Tool\\": "packages/informatics/tool/src",
-            "Informatics\\Key\\": "packages/informatics/key/src"
+            "Informatics\\Key\\": "packages/informatics/key/src",
+            "Informatics\\Analytics\\": "packages/informatics/analytics/src"
         }
     },
     "minimum-stability": "dev",

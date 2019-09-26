@@ -5,6 +5,7 @@ namespace Informatics\Base\Providers;
 use Illuminate\Support\ServiceProvider;
 use Informatics\Admin\Providers\InformaticsAdminServiceProvider;
 use Informatics\Agency\Providers\InformaticsAgencyServiceProvider;
+use Informatics\Analytics\Providers\InformaticsAnalyticsServiceProvider;
 use Informatics\Assets\Providers\AssetsServiceProvider;
 use Informatics\Auth\Providers\InformaticsAuthServiceProvider;
 use Informatics\Key\Providers\InformaticsKeyServiceProvider;
@@ -44,6 +45,8 @@ class BaseServiceProvider extends ServiceProvider
         $this->app->register(InformaticsAgencyServiceProvider::class);
         $this->app->register(InformaticsToolServiceProvider::class);
         $this->app->register(InformaticsKeyServiceProvider::class);
+        $this->app->register(InformaticsAnalyticsServiceProvider::class);
+
 
         $this->loadViewsFrom(__DIR__ . '/../views', 'base');
 

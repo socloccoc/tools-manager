@@ -41,7 +41,7 @@
                                                 {!! Form::label('username', 'Tài khoản *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-7">
-                                                {!! Form::text('username', isset($user->username) ? $user->username : 'user2', ['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
+                                                {!! Form::text('username', isset($user->username) ? $user->username : '', ['placeholder'=>'Tài khoản','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                                 {!! Form::label('email', 'Email *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-7">
-                                                {!! Form::text('email', isset($user->email) ? $user->email : 'user2@gmail.com', ['placeholder'=>'Email','class' => 'form-control']) !!}
+                                                {!! Form::text('email', isset($user->email) ? $user->email : '', ['placeholder'=>'Email','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                                 {!! Form::label('name', 'Họ tên *',['class'=>'required']) !!}
                                             </div>
                                             <div class="col-sm-7">
-                                                {!! Form::text('name', isset($user->full_name) ? $user->full_name : 'user2', ['placeholder'=>'Họ tên','class' => 'form-control']) !!}
+                                                {!! Form::text('name', isset($user->full_name) ? $user->full_name : '', ['placeholder'=>'Họ tên','class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                     </div>

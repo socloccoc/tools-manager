@@ -15,6 +15,7 @@ class CreateFeesTable extends Migration
     {
         Schema::create('fees', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('user_id');
             $table->integer('tool_id');
             $table->string('licence_key', 100);
             $table->integer('value');

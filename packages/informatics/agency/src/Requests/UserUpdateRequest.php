@@ -24,12 +24,10 @@ class UserUpdateRequest extends Request
      */
     public function rules()
     {
-        // Basic Property Validation
         $rules = [
             'username' => 'required|max:255',
             'name' => 'required|max:255',
             'email' => 'required|max:255',
-            'point' => 'numeric|min:0',
         ];
         return $rules;
     }
