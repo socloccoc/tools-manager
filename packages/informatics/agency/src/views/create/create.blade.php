@@ -92,62 +92,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if(!isset($user))
-                                <div class="col-sm-6">
-                                    @for($i = 0 ; $i < count($apps); $i++ )
-                                        <div class="col-sm-12">
-                                            <div class='form-group clearfix'>
-                                                <div class="col-sm-3">
-                                                    <label>{{ $apps[$i]['name'] }}</label>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <input type="text" value="" name="app_{{ $apps[$i]['id'] }}" class="form-control" placeholder="{{ $apps[$i]['name'] . ' ( key ) ' }}">
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <input type="number" name="point_{{ $apps[$i]['id'] }}" class="form-control" placeholder="{{ $apps[$i]['name'] . ' ( point ) ' }}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endfor
-                                </div>
-                                @else
-                                <div class="col-sm-6">
-                                    <div class="col-sm-12">
-                                        <div class='form-group clearfix'>
-                                            <div class="col-sm-3"></div>
-                                            <div class="col-sm-3">Key</div>
-                                            <div class="col-sm-2">Total Point</div>
-                                            <div class="col-sm-2">Rest Point</div>
-                                            <div class="col-sm-2">Add Point</div>
-                                        </div>
-                                    </div>
-                                    @for($i = 0 ; $i < count($apps); $i++ )
-                                        @for($j = 0 ; $j < count($userApps); $j++ )
-                                            @if($apps[$i]['id'] == $userApps[$j]['app_id'])
-                                            <div class="col-sm-12">
-                                                <div class='form-group clearfix'>
-                                                    <div class="col-sm-3">
-                                                        <label>{{ $apps[$i]['name'] }}</label>
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <input type="text" value="{{ $userApps[$j]['key'] }}" name="app_{{ $apps[$i]['id'] }}" class="form-control" placeholder="{{ $apps[$i]['name'] . ' ( key ) ' }}">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="number" disabled value="{{ $userApps[$j]['total_point'] }}" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="number" disabled value="{{ isset($restPoint[$userApps[$j]['key']]) ? $restPoint[$userApps[$j]['key']] : 0 }}" class="form-control">
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <input type="number" value="{{ $userApps[$j]['total_point'] }}" name="point_{{ $apps[$i]['id'] }}" class="form-control" placeholder="{{ $apps[$i]['name'] . ' ( point ) ' }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endif
-                                        @endfor
-                                    @endfor
-                                </div>
-                                @endif
                                 <div class="col-sm-12 clearfix">
                                     <a href="{{URL::route('user.index') }}" class="btn btn-link pull-left"><< Back</a>
                                     @if(isset($user->id))

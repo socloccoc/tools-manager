@@ -75,7 +75,7 @@ class IndexController extends Controller
     public function store(ToolCreateRequest $request)
     {
         try {
-            $newTool = $request->only('name');
+            $newTool = $request->only('name', 'max_point', 'fee');
             $tool = Tool::create($newTool);
             if ($tool) {
                 return redirect('manager/tool')
@@ -102,7 +102,7 @@ class IndexController extends Controller
     public function update(ToolUpdateRequest $request, $id)
     {
         try {
-            $tool['name'] = $request->get('name');
+            $tool = $request->only('name', 'max_point', 'fee');
             $tool = Tool::where('id', $id)->limit(1)->update($tool);
             if ($tool) {
                 return Redirect::back()

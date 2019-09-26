@@ -65,5 +65,19 @@ class DatabaseSeeder extends Seeder
         $userRole = Sentinel::findRoleById(3);
         $user = Sentinel::registerAndActivate($user);
         $userRole->users()->attach($user);
+
+        $tool = [
+            [
+                'name' => 'tool 1',
+                'max_point' => 1000,
+                'fee' => 1000,
+            ],
+            [
+                'name' => 'tool 2',
+                'max_point' => 2000,
+                'fee' => 2000,
+            ]
+        ];
+        \Informatics\Tool\Models\Tool::insert($tool);
     }
 }

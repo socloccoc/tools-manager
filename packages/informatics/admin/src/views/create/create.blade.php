@@ -2,14 +2,14 @@
 
 @section('breadcrumb')
     @if(isset($agency->id) && !empty($agency->id))
-        @include('base::layout.partials.breadcrumb', ['title'=>'Cập nhật thông tin đại lý', 'breadcrumbs'=>[
+        @include('base::layout.partials.breadcrumb', ['title'=>'Cập nhật thông cộng tác viên', 'breadcrumbs'=>[
             ['url'=>'/manager', 'label'=>'Bảng điều khiển'],
-            ['label'=>'Cập nhật thông tin đại lý'],
+            ['label'=>'Cập nhật thông tin cộng tác viên'],
         ]])
     @else
-        @include('base::layout.partials.breadcrumb', ['title'=>'Thêm mới đại lý', 'breadcrumbs'=>[
+        @include('base::layout.partials.breadcrumb', ['title'=>'Thêm mới cộng tác viên', 'breadcrumbs'=>[
             ['url'=>'/manager', 'label'=>'Bảng điều khiển'],
-            ['label'=>'Thêm mới đại lý'],
+            ['label'=>'Thêm mới cộng tác viên'],
         ]])
     @endif
 

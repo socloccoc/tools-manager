@@ -1,6 +1,6 @@
 <?php
 
-namespace Informatics\Admin\Repository\Db;
+namespace Informatics\Key\Repository\Db;
 
 use App\Helpers\BasicHelper;
 use Informatics\Base\Repositories\Interfaces\BaseOperationsInterface;
@@ -61,7 +61,7 @@ class DbAdminRepository implements BaseOperationsInterface
         $query = DB::table('users')
             ->Join('role_users as usrRoles', 'usrRoles.user_id', '=', 'users.id')
             ->Join('roles as roleName', 'roleName.id', '=', 'usrRoles.role_id')
-            ->select('users.id', 'roleName.name as role', 'users.email', 'users.name as full_name', 'users.last_login')
+            ->select('users.*', 'roleName.name as role', 'users.email')
             ->where(function($que) use ( $filters ) {
                 if (isset($filters['Keyword']) && !empty($filters['Keyword'])) {
                     $que->Where(function($que) use ( $filters ) {
@@ -72,7 +72,7 @@ class DbAdminRepository implements BaseOperationsInterface
             })
             ->where(function($que) {
                 if (Permission::isSuperAdmin()) {
-                    $que->orWhere('usrRoles.role_id', 2);
+                    $que->where('usrRoles.role_id', 3);
                 } elseif (Permission::isAgency()) {
                     $user = BasicHelper::getUserDetails();
                     $que->where('usrRoles.role_id', 3);

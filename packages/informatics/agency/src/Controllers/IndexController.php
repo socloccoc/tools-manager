@@ -75,8 +75,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-        $apps = KeyHelper::apps()['data'];
-        return view('agency::create.create', compact('apps'));
+        return view('agency::create.create');
     }
 
     /**
@@ -102,41 +101,6 @@ class IndexController extends Controller
             $role = Sentinel::findRoleById($data['role']);
             $role->users()->attach($user);
 
-            //Insert app
-            $apps = KeyHelper::apps()['data'];
-            if (count($apps) > 0) {
-                $appData = [];
-                $pointHistoryData = [];
-                foreach ($apps as $app) {
-                    $key = $request['app_' . $app['id']];
-                    $point = $request['point_' . $app['id']];
-                    $appData[] = ['user_id' => $user['id'], 'app_id' => $app['id'], 'key' => $key, 'total_point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                    if ($point > 0) {
-                        $pointHistoryData[] = ['sender_id' => $agencyId, 'receiver_id' => $user['id'], 'app_id' => $app['id'], 'key' => $key, 'point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                    }
-                    if ($key == '') continue;
-                    // validate key
-                    $keyValidate = KeyHelper::validateKey($key, $app['id']);
-                    if ($keyValidate['success'] == false) {
-                        DB::rollBack();
-                        return Redirect::back()->withErrors([$keyValidate['message']]);
-                    }
-                }
-                UserApp::insert($appData);
-            }
-
-            // app point for key
-            foreach ($pointHistoryData as $point) {
-                $appPoint = KeyHelper::addPointforKey($point['key'], $point['point']);
-                if ($appPoint['success'] == false) {
-                    DB::rollBack();
-                    return Redirect::back()->withErrors([$appPoint['message']]);
-                }
-            }
-
-            //Insert point history
-            AddPointHistory::insert($pointHistoryData);
-
             DB::commit();
             return redirect('manager/user')->with('message', 'Thêm người dùng thành công !');
         } catch (\Exception $ex) {
@@ -152,17 +116,9 @@ class IndexController extends Controller
             if ($currentID != $id && Permission::isUser()) {
                 abort(405);
             } else {
-                $apps = KeyHelper::apps()['data'];
-                $userApps = UserApp::where('user_id', $id)->get();
-                $restPoint = [];
-                foreach ($userApps as $userApp) {
-                    if ($userApp['key'] == '') continue;
-                    $point = KeyHelper::getPointByKey($userApp['key']);
-                    $restPoint[$userApp['key']] = $point['point'];
-                }
                 $userRepo = new UserRepo();
                 $user = $userRepo->getUserDetailById($id);
-                return view('agency::create.create', compact('user', 'apps', 'userApps', 'restPoint'));
+                return view('agency::create.create', compact('user'));
             }
         } else {
             return redirect('manager/user')->with('error_message', 'Either User Not Found or Editing in a wrong role.');
@@ -177,55 +133,6 @@ class IndexController extends Controller
             $agencyId = BasicHelper::getUserDetails()->id;
             $newUser['parent_id'] = $agencyId;
             User::where('id', $userId)->limit(1)->update($newUser);
-
-            //Insert app
-            $apps = KeyHelper::apps()['data'];
-            if (count($apps) > 0) {
-                $appData = [];
-                $pointHistoryData = [];
-                foreach ($apps as $app) {
-                    $userApp = UserApp::where('user_id', $userId)->where('app_id', $app['id'])->first();
-                    $key = $request['app_' . $app['id']];
-                    $point = $request['point_' . $app['id']];
-
-                    // validate key
-                    if ($key != '') {
-                        $keyValidate = KeyHelper::validateKey($key, $app['id']);
-                        if ($keyValidate['success'] == false) {
-                            DB::rollBack();
-                            return Redirect::back()->withErrors([$keyValidate['message']]);
-                        }
-                    }
-
-                    if ($userApp) {
-                        // update
-                        $totalPoint = $userApp['total_point'] + $point;
-                        $userAppUpdate = $userApp->update(['key' => $key, 'total_point' => $totalPoint]);
-                        if ($userAppUpdate && $point > 0) {
-                            // add point
-                            $addPoint = KeyHelper::addPointforKey($key, $point);
-                            if ($addPoint['success'] == false) {
-                                DB::rollBack();
-                                return Redirect::back()->withErrors([$addPoint['message']]);
-                            }
-                            // update total point
-                            $pointHistoryData[] = ['sender_id' => $agencyId, 'receiver_id' => $userId, 'app_id' => $app['id'], 'key' => $key, 'point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                        }
-                    } else {
-                        // create
-                        $appData[] = ['user_id' => $userId, 'app_id' => $app['id'], 'key' => $key, 'total_point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                        if ($point > 0) {
-                            $pointHistoryData[] = ['sender_id' => $agencyId, 'receiver_id' => $userId, 'app_id' => $app['id'], 'key' => $key, 'point' => $point, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
-                        }
-                    }
-
-                }
-                UserApp::insert($appData);
-            }
-
-            //Insert point history
-            AddPointHistory::insert($pointHistoryData);
-
             DB::commit();
             return Redirect::back()->with('message', 'Cập nhật thông tin người dùng thành công !');
         } catch (\Exception $ex) {

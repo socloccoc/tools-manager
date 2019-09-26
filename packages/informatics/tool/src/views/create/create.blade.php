@@ -38,10 +38,32 @@
                                 <div class="col-sm-12">
                                     <div class='form-group clearfix'>
                                         <div class="col-sm-2">
-                                            {!! Form::label('name', 'Tài khoản *',['class'=>'required']) !!}
+                                            {!! Form::label('name', 'App name *',['class'=>'required']) !!}
                                         </div>
                                         <div class="col-sm-4">
-                                            {!! Form::text('name',isset($tool->name) ? $tool->name : '',['placeholder'=>'Tool name','class' => 'form-control']) !!}
+                                            {!! Form::text('name',isset($tool->name) ? $tool->name : '',['placeholder'=>'App name','class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class='form-group clearfix'>
+                                        <div class="col-sm-2">
+                                            {!! Form::label('max_point', 'Max Point *',['class'=>'required']) !!}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {!! Form::number('max_point',isset($tool->max_point) ? $tool->max_point : '',['placeholder'=>'Max point','class' => 'form-control']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class='form-group clearfix'>
+                                        <div class="col-sm-2">
+                                            {!! Form::label('fee', 'Fee *',['class'=>'required']) !!}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            {!! Form::number('fee',isset($tool->fee) ? $tool->fee : '',['placeholder'=>'Fee','class' => 'form-control']) !!}
                                         </div>
                                     </div>
                                 </div>

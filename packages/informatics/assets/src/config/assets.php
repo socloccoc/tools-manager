@@ -17,7 +17,8 @@ return [
         'noty',
         'notifi',
         'custom',
-        'base'
+        'base',
+//        'datatable'
     ],
 
     'stylesheets' => [
@@ -32,6 +33,7 @@ return [
         'noty',
         'theme-dust',
         'custom',
+//        'datatable',
     ],
 
     'resources' => [
@@ -194,6 +196,7 @@ return [
                 'location' => 'top',
                 'src' => [
                     'local' => '/backend/lib/bootstrap/bootstrap.min.css',
+//                    'local' => 'https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
             ],
             'ionicons' => [

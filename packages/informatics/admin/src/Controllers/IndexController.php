@@ -121,7 +121,7 @@ class IndexController extends Controller
         $role->users()->attach($user);
 
         return Redirect::route('admin.index')
-            ->withMessage('Bạn đã thêm thành công một đại lý !');
+            ->withMessage('Bạn đã thêm thành công một cộng tác viên !');
     }
 
     public function edit($id)
@@ -159,7 +159,7 @@ class IndexController extends Controller
         $userRepo->update($userData, $userId);
 
         return Redirect::back()
-        ->withMessage('Cập nhật thông tin đại lý thành công');
+        ->withMessage('Cập nhật thông tin công tác viên thành công');
 
     }
 

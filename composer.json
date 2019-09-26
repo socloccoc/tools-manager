@@ -17,6 +17,7 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
+        "maatwebsite/excel": "^3.1",
         "paragonie/sodium_compat": "^1.10",
         "yajra/laravel-datatables-oracle": "^9.4"
     },
@@ -57,7 +58,8 @@
             "Informatics\\Dashboard\\": "packages/informatics/dashboard/src",
             "Informatics\\Admin\\": "packages/informatics/admin/src",
             "Informatics\\Agency\\": "packages/informatics/agency/src",
-            "Informatics\\Tool\\": "packages/informatics/tool/src"
+            "Informatics\\Tool\\": "packages/informatics/tool/src",
+            "Informatics\\Key\\": "packages/informatics/key/src"
         }
     },
     "minimum-stability": "dev",

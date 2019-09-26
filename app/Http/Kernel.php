@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'isLogin' => \Informatics\Auth\Middleware\IsLoginMiddleware::class,
         'adminCheck' => \Informatics\Auth\Middleware\AdminMiddleware::class,
         'agencyCheck' => \Informatics\Auth\Middleware\AgencyMiddleware::class,
+        'adminAndAgencyCheck' => \Informatics\Auth\Middleware\AdminAndAgencyMiddleware::class,
     ];
 
     /**

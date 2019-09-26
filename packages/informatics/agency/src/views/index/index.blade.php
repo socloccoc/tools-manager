@@ -12,45 +12,25 @@
 @section('content')
 
     @include('errors.errorlist')
-
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <div class="panel">
-        <div class="panel-body rr-search">
-            {!! Form::open(array('route' => 'admin.index', 'method'=>'get', 'class'=>'form-inline')) !!}
-            <div class="form-group">
-                {!! Form::text('keyword', isset($filters["keyword"]) && $filters["keyword"] != '' ? $filters["keyword"] : '' ,array('class'=>'form-control', 'placeholder'=>'Tìm kiếm', 'autocomplete' => 'off')) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::submit('Search',array('class'=>'btn btn-primary')) !!}
-                <a href="{{route('admin.index')}}" class="btn btn-default">Show All</a>
-            </div>
-            {!! Form::close() !!}
-        </div>
         <input name="_token" type="hidden" value="{!! csrf_token() !!}"/>
-
         <div class='panel-body'>
             <div class="table-responsive" id="AdminsTable">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="example">
                     <thead>
                     <tr>
-                        <th></th>
-                        <th>{!!$columns['users.name']!!}</th>
-                        <th>{!!$columns['users.email']!!}</th>
-                        <th>{!!$columns['roleName.name']!!}</th>
-                        <th>{!!$columns['users.last_login']!!}</th>
-                        @if(Permission::isSuperAdmin())
-                            <th></th>
-                        @endif
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Last login</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if( isset($admins) && count($admins) )
                         @foreach($admins as $admin)
                             <tr>
-                                <td>
-                                    <a href="{{URL::route('user.edit', $admin->id)}}">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                </td>
                                 <td>{!! $admin->full_name !!}</td>
                                 <td>
                                     <a>
@@ -61,14 +41,14 @@
                                     {{ $admin->role ? $admin->role : 'N/A'}}
                                 </td>
                                 <td>{!! $admin->last_login && strtotime($admin->last_login) ? date('d/m/Y h:i', strtotime($admin->last_login)) : 'N/A' !!}</td>
-                                @if(Permission::isSuperAdmin())
-                                    <td>
-                                        {!! Form::open( array('route' => array('admin.destroy', $admin->id ),'role' => 'form','method' => 'Delete','onClick'=>"return confirm('Are you sure you want to delete?')")) !!}
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
-                                        </button>
-                                        {!! Form::close() !!}
-                                    </td>
-                                @endif
+                                <td>
+                                    <a class="btn btn-primary" href="{{URL::route('user.edit', $admin->id)}}">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    {{--<a class="btn btn-danger" href="{{URL::route('user.delete', $admin->id)}}">--}}
+                                        {{--<i class="fa fa-trash"></i>--}}
+                                    {{--</a>--}}
+                                </td>
                             </tr>
                         @endforeach
                     @else
@@ -77,6 +57,15 @@
                         </tr>
                     @endif
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Lass login</th>
+                        <th>Action</th>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
             <hr>
@@ -84,4 +73,16 @@
         </div>
     </div>
 
+@endsection
+@section('javascript')
+    @parent
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" defer></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 @endsection

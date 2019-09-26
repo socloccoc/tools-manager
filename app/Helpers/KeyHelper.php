@@ -3,7 +3,7 @@
 namespace App\Helpers;
 class KeyHelper
 {
-    const SERVER_KEY_URL = 'http://localhost:8000/api/v1/';
+//    const SERVER_KEY_URL = 'http://localhost:8000/api/v1/';
 
     public static function getPointByKey($key)
     {
