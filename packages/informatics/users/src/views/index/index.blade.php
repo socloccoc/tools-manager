@@ -21,6 +21,7 @@
                     <div class="form-group col-sm-3" style="padding: 0px">
                         <label for="status">Status</label>
                         <select id="status" name="status" class="form-control form-inline">
+                            <option {{ isset($status) && $status == -1 ? 'selected' : '' }} value="-1">--- All ---</option>
                             @forelse(config('constants.key_status') as $index => $st)
                                 <option {{ isset($status) && $status == $st ? 'selected' : '' }} value="{{ $st }}">{{ $index }}</option>
                             @empty
