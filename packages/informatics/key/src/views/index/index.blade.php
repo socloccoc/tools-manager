@@ -21,6 +21,7 @@
                     <div class="form-group col-sm-3" style="padding: 0px">
                         <label for="status">Status</label>
                         <select id="status" name="status" class="form-control form-inline">
+                            <option {{ isset($status) && $status == -1 ? 'selected' : '' }} value="-1">--- All ---</option>
                             @forelse(config('constants.key_status') as $index => $st)
                                 <option {{ isset($status) && $status == $st ? 'selected' : '' }} value="{{ $st }}">{{ $index }}</option>
                             @empty
@@ -30,6 +31,7 @@
                     <div class="form-group col-sm-3">
                         <label for="user_id">User</label>
                         <select id="user_id" name="user_id" class="form-control form-inline">
+                            <option value="">--- All ---</option>
                             @forelse($users as $index => $user)
                                 <option {{ isset($userId) && $userId == $user['id'] ? 'selected' : '' }} value="{{ $user['id'] }}">{{ $user['name'] }}</option>
                             @empty
@@ -171,12 +173,12 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="number_of_months">Number of months</label>
-                            <input type="number" class="form-control" id="number_of_months" name="number_of_months">
+                            <input type="number" class="form-control" id="number_of_months" name="number_of_months" value="0">
                             <input type="number" class="form-control modal-key-adjourn-id" hidden name="modal_key_adjourn_id">
                         </div>
                         <div class="form-group">
                             <label for="point_order">Point order</label>
-                            <input type="number" class="form-control" id="point_order" name="point_order">
+                            <input type="number" class="form-control" id="point_order" name="point_order" value="0">
                         </div>
                     </div>
                     <div class="modal-footer">

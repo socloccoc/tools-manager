@@ -12,30 +12,21 @@
 @section('content')
 
     @include('errors.errorlist')
-
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <div class="panel">
-        <div class="panel-body rr-search">
-            {!! Form::open(array('route' => 'admin.index', 'method'=>'get', 'class'=>'form-inline')) !!}
-            <div class="form-group">
-                {!! Form::text('keyword', isset($filters["keyword"]) && $filters["keyword"] != '' ? $filters["keyword"] : '' ,array('class'=>'form-control', 'placeholder'=>'Tìm kiếm', 'autocomplete' => 'off')) !!}
-            </div>
-            <div class="form-group">
-                {!! Form::submit('Search',array('class'=>'btn btn-primary')) !!}
-                <a href="{{route('admin.index')}}" class="btn btn-default">Show All</a>
-            </div>
-            {!! Form::close() !!}
-        </div>
         <input name="_token" type="hidden" value="{!! csrf_token() !!}"/>
 
         <div class='panel-body'>
-            <div class="table-responsive" id="AdminsTable">
-                <table class="table table-bordered">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="toolDataTable">
                     <thead>
                     <tr>
                         @if(Permission::isSuperAdmin())
                             <th></th>
                         @endif
-                        <th>{!!$columns['tool.name']!!}</th>
+                        <th>Name</th>
+                        <th>Max Point</th>
+                        <th>Fee</th>
                         @if(Permission::isSuperAdmin())
                             <th></th>
                         @endif
@@ -53,6 +44,8 @@
                                     </td>
                                 @endif
                                 <td>{!! $tool->name !!}</td>
+                                <td>{!! $tool->max_point !!}</td>
+                                <td>{!! $tool->fee !!}</td>
                                 @if(Permission::isSuperAdmin())
                                     <td>
                                         {!! Form::open( array('route' => array('tool.destroy', $tool->id ),'role' => 'form','method' => 'Delete','onClick'=>"return confirm('Bạn có chắc chắn muốn xóa không?')")) !!}
@@ -72,8 +65,20 @@
                 </table>
             </div>
             <hr>
-            @include('partials.paginate_bottom')
         </div>
     </div>
 
+@endsection
+@section('javascript')
+    @parent
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" defer></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#toolDataTable').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 @endsection

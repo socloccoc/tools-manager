@@ -43,10 +43,10 @@
                         <th> App</th>
                         <th> User</th>
                         <th> Licence</th>
-                        <th> Serial number</th>
                         <th> Expire time</th>
                         <th> Expire date</th>
                         <th> Point order</th>
+                        <th> Point register</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,10 +56,10 @@
                                 <td>{!! $key['tool']['name'] !!}</td>
                                 <td>{!! $key['user']['name'] !!}</td>
                                 <td>{!! $key['licence_key'] !!}</td>
-                                <td>{!! $key['serial_number'] !!}</td>
                                 <td>{!! $key['expire_time'] !!}</td>
                                 <td>{!! $key['expire_date'] !!}</td>
                                 <td>{!! $key['point_order'] !!}</td>
+                                <td>{!! $key['point_register'] !!}</td>
                             </tr>
                         @endforeach
                     @else

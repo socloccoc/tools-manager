@@ -17,44 +17,17 @@ use Redirect;
 
 class IndexController extends Controller
 {
-    const ADD_ACCOUNT_SUCCESS_MSG = 'Thêm tài khoản thành công !';
 
     /**
-     *  Display a listing of Admin
+     *  Display a listing of tool
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author Toinn
      */
     public function index()
     {
-        $keyword = Input::get('keyword');
-
-        // array to show selected values for search conditions
-        $filters = array(
-            'Keyword' => trim($keyword),
-        );
-
-        $sortInfo = array();
-        if (Input::has('sort') && Input::has('dir')) {
-            $sortInfo['column'] = Input::get('sort');
-            $sortInfo['order'] = Input::get('dir');
-        }
-
         $query = app(Tool::class)->newQuery();
-        $pagination = $query->paginate('15')->render();
         $tools = $query->get();
-        //Getting list of sortable columns
-        $columns = $this->getSortableColumn();
-
-        return view('tool::index.index', compact('tools', 'columns', 'pagination', 'filters'));
-
-    }
-
-    public function getSortableColumn()
-    {
-        $columns = array(
-            'tool.name' => 'Name',
-        );
-        return Helper::getSortableColumnOnArray($columns);
+        return view('tool::index.index', compact('tools'));
     }
 
     /**

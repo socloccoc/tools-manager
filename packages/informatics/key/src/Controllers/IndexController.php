@@ -35,7 +35,7 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
-        $status = isset($request->status) ? $request->status : 0;
+        $status = isset($request->status) ? $request->status : -1;
         $userId = isset($request->user_id) ? $request->user_id : '';
         $userLoginId = BasicHelper::getUserDetails()->id;
         $users = [];
@@ -53,14 +53,16 @@ class IndexController extends Controller
             });
         }
         $query = $query->where(function ($query) use ($status, $userId) {
-            if ($status == 1) {
-                $query->where('expire_date', '!=', null);
-            } elseif ($status == 2) {
-                $query->where('expire_date', '>=', Carbon::now()->format('Y-m-d H:i:s'));
-            } elseif ($status == 3) {
-                $query->where('expire_date', '<', Carbon::now()->format('Y-m-d H:i:s'));
-            } else {
-                $query->where('expire_date', '=', null);
+            if($status != -1) {
+                if ($status == 1) {
+                    $query->where('expire_date', '!=', null);
+                } elseif ($status == 2) {
+                    $query->where('expire_date', '>=', Carbon::now()->format('Y-m-d H:i:s'));
+                } elseif ($status == 3) {
+                    $query->where('expire_date', '<', Carbon::now()->format('Y-m-d H:i:s'));
+                } else {
+                    $query->where('expire_date', '=', null);
+                }
             }
             if ($userId != '') {
                 $query->where('user_id', '=', $userId);
@@ -217,11 +219,11 @@ class IndexController extends Controller
     {
         $this->validate($request, [
             'modal_key_adjourn_id' => 'required|integer|min:0',
-            'point_order'          => 'required|integer|min:0',
-            'number_of_months'     => 'required|integer|min:0',
+            'point_order'          => 'integer|min:0',
+            'number_of_months'     => 'integer|min:0',
         ], []);
-        $pointOrder = $request->point_order;
-        $numberOfMonths = $request->number_of_months;
+        $pointOrder = isset($request->point_order) ? $request->point_order : 0;
+        $numberOfMonths = isset($request->number_of_months) ? $request->number_of_months : 0;
         $userLoginId = BasicHelper::getUserDetails()->id;
         try {
             DB::beginTransaction();
@@ -232,7 +234,7 @@ class IndexController extends Controller
             $expireDate = $key['expire_date'];
             $newKey['point_order'] = $pointOrder + $key['point_order'];
             $newKey['expire_time'] = $numberOfMonths + $key['expire_time'];
-            if ($expireDate != '') {
+            if ($expireDate != '' && $numberOfMonths > 0) {
                 if ($expireDate > Carbon::now()) {
                     $newKey['expire_date'] = Carbon::now()->addMonth($numberOfMonths);
                 } else {
@@ -244,10 +246,14 @@ class IndexController extends Controller
                 return Redirect::back()->withErrors(['Gia hạn thất bại']);
             }
             $tool = Tool::where('id', $key['tool_id'])->first();
-            $fees = [
-                ['user_id' => $userLoginId, 'tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $numberOfMonths * $tool['fee'], 'action' => config('constants.key_action.adjourn'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-                ['user_id' => $userLoginId, 'tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $pointOrder * 2000, 'action' => config('constants.key_action.add_point'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ];
+
+            $fees = [];
+            if($numberOfMonths > 0){
+                $fees[] = ['user_id' => $userLoginId, 'tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $numberOfMonths * $tool['fee'], 'action' => config('constants.key_action.adjourn'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+            }
+            if($pointOrder > 0){
+                $fees[] = ['user_id' => $userLoginId, 'tool_id' => $key['tool_id'], 'licence_key' => $key['licence_key'], 'value' => $pointOrder * 2000, 'action' => config('constants.key_action.add_point'), 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()];
+            }
             Fee::insert($fees);
             DB::commit();
             return Redirect::back()->withMessage('Gia hạn thành công !');
