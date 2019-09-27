@@ -142,4 +142,20 @@ class IndexController extends Controller
 
     }
 
+    public function deleteUser($id)
+    {
+        try {
+            if ($id <= 2) {
+                return Redirect::back()->withErrors('Không được phép xóa cộng tác viên mặc định !');
+            }
+            $agency = Sentinel::findById($id);
+            if ($agency->delete()) {
+                return Redirect::back()->withMessage('Xóa người dùng thành công !');
+            }
+            return Redirect::back()->withErrors('Xóa người dùng Thất bại !');
+        } catch (\Exception $ex) {
+            return Redirect::back()->withErrors($ex->getMessage());
+        }
+    }
+
 }

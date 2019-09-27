@@ -35,7 +35,6 @@
                         @if(Permission::isSuperAdmin())
                             <th></th>
                         @endif
-                        <th></th>
                         <th>{!!$columns['users.name']!!}</th>
                         <th>{!!$columns['users.email']!!}</th>
                         <th>{!!$columns['roleName.name']!!}</th>
@@ -56,11 +55,6 @@
                                         </a>
                                     </td>
                                 @endif
-                                <td>
-                                    <a href="{{Helper::userProfileLink($admin, 'admin-detail')}}">
-                                        <i class="fa fa-search"></i>
-                                    </a>
-                                </td>
                                 <td>{!! $admin->full_name !!}</td>
                                 <td>
                                     <a>
@@ -73,10 +67,12 @@
                                 <td>{!! $admin->last_login && strtotime($admin->last_login) ? date('d/m/Y h:i', strtotime($admin->last_login)) : 'N/A' !!}</td>
                                 @if(Permission::isSuperAdmin())
                                     <td>
-                                        {!! Form::open( array('route' => array('admin.destroy', $admin->id ),'role' => 'form','method' => 'Delete','onClick'=>"return confirm('Are you sure you want to delete?')")) !!}
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
-                                        </button>
-                                        {!! Form::close() !!}
+                                        @if($admin->id != 2)
+                                            {!! Form::open( array('route' => array('admin.destroy', $admin->id ),'role' => 'form','method' => 'Delete','onClick'=>"return confirm('Bạn có chắc chắn muốn xóa không ?')")) !!}
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>
+                                            </button>
+                                            {!! Form::close() !!}
+                                        @endif
                                     </td>
                                 @endif
                             </tr>

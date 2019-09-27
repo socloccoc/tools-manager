@@ -4,6 +4,10 @@ Route::group(['namespace' => 'Informatics\Agency\Controllers', 'prefix' => 'mana
 
     Route::group(['middleware' => 'agencyCheck'], function() {
         Route::resource('user', 'IndexController');
+        Route::get('deleteUser/{id}', [
+            'as'   => 'user.deleteUser',
+            'uses' => 'IndexController@deleteUser'
+        ]);
     });
 
 });

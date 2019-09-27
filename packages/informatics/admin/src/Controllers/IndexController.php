@@ -3,9 +3,11 @@
 namespace Informatics\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Informatics\Admin\Requests\SystemAdminCreateRequest;
 use Informatics\Admin\Requests\ToolCreateRequest;
 use Informatics\Admin\Requests\SystemAdminUpdateRequest;
+use Informatics\Users\Models\User;
 use Informatics\Users\Repositories\Db\DbUsersRepository as UserRepo;
 use Sentinel;
 use Illuminate\Http\Request;
@@ -162,6 +164,31 @@ class IndexController extends Controller
         return Redirect::back()
         ->withMessage('Cập nhật thông tin công tác viên thành công');
 
+    }
+
+    public function destroy($id){
+        try {
+            DB::beginTransaction();
+            if($id <= 2){
+                return Redirect::back()
+                    ->withErrors('Không được phép xóa cộng tác viên mặc định !');
+            }
+            $agency = Sentinel::findById($id);
+            if ($agency->delete()) {
+                $users = User::where('parent_id', $id)->update(['parent_id' => 2]);
+                if ($users) {
+                    DB::commit();
+                    return Redirect::back()
+                        ->withMessage('Xóa cộng tác viên thành công !');
+                }
+            }
+            return Redirect::back()
+                ->withErrors('Xóa cộng tác viên Thất bại !');
+        }catch (\Exception $ex){
+            DB::rollBack();
+            return Redirect::back()
+                ->withErrors($ex->getMessage());
+        }
     }
 
 }

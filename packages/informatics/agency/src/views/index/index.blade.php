@@ -45,9 +45,11 @@
                                     <a class="btn btn-primary" href="{{URL::route('user.edit', $admin->id)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    {{--<a class="btn btn-danger" href="{{URL::route('user.delete', $admin->id)}}">--}}
-                                        {{--<i class="fa fa-trash"></i>--}}
-                                    {{--</a>--}}
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa không ?')"
+                                       class="btn btn-danger"
+                                       href="{{ route('user.deleteUser', ['id' => $admin->id]) }}">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
