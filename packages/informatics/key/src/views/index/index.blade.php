@@ -227,6 +227,13 @@
                         });
                     });
                 });
+                $('.adjourn-loadModal').each(function (index, elem) {
+                    $(this).on('click', function (e) {
+                        // var CSRF_TOKEN = $('input[name="_token"]').val();
+                        var key_id = $(this).attr('key_id');
+                        $('.modal-key-adjourn-id').val(key_id);
+                    });
+                });
             });
             $('.edit-loadModal').each(function (index, elem) {
                 $(this).on('click', function (e) {
@@ -256,22 +263,6 @@
                     // var CSRF_TOKEN = $('input[name="_token"]').val();
                     var key_id = $(this).attr('key_id');
                     $('.modal-key-adjourn-id').val(key_id);
-                    // $.ajax({
-                    //     url: '/manager/ajax/getKeyInfo',
-                    //     type: 'POST',
-                    //     data: {_token: CSRF_TOKEN, keyId: key_id},
-                    //     dataType: 'JSON',
-                    //     success: function (data) {
-                    //         console.log(data);
-                    //         if (data !== null) {
-                    //             $('#expire_date').val(data.expire_date);
-                    //             $('#point_order').val(data.point_order);
-                    //             $('#point_register').val(data.point_register);
-                    //             $('#serial_number').val(data.serial_number);
-                    //             $('.modal-key-id').val(data.id);
-                    //         }
-                    //     }
-                    // });
                 });
             });
         });
