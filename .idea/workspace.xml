@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26c79261-aea2-4b88-b16c-bfc8c1d07741" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/packages/informatics/users/src/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/informatics/users/src/Controllers/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,46 +17,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/informatics/tool/src/Controllers/IndexController.php">
+        <entry file="file://$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
+            <state relative-caret-position="317">
+              <caret line="40" column="53" lean-forward="true" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/informatics/users/src/Controllers/IndexController.php">
+        <entry file="file://$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="39" column="78" lean-forward="true" selection-start-line="39" selection-start-column="78" selection-end-line="39" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/informatics/tool/src/views/index/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="39" column="40" lean-forward="true" selection-start-line="39" selection-start-column="40" selection-end-line="39" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/informatics/key/src/views/index/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="103" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="103" />
+              <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+              <folding>
+                <element signature="e#53#81#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,8 +80,6 @@
         <option value="$PROJECT_DIR$/packages/informatics/analytics/src/Providers/InformaticsAnalyticsServiceProvider.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_09_26_133009_create_fees_table.php" />
         <option value="$PROJECT_DIR$/packages/informatics/base/src/Models/Fee.php" />
-        <option value="$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php" />
-        <option value="$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php" />
         <option value="$PROJECT_DIR$/packages/informatics/agency/src/views/create/create.blade.php" />
         <option value="$PROJECT_DIR$/packages/informatics/agency/src/Requests/UserUpdateRequest.php" />
         <option value="$PROJECT_DIR$/packages/informatics/agency/src/Requests/UserCreateRequest.php" />
@@ -126,6 +100,8 @@
         <option value="$PROJECT_DIR$/packages/informatics/tool/src/Controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/packages/informatics/users/src/Controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php" />
+        <option value="$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php" />
+        <option value="$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php" />
       </list>
     </option>
   </component>
@@ -387,6 +363,49 @@
               <item name="tools-manager" type="462c0819:PsiDirectoryNode" />
               <item name="packages" type="462c0819:PsiDirectoryNode" />
               <item name="informatics" type="462c0819:PsiDirectoryNode" />
+              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="informatics" type="462c0819:PsiDirectoryNode" />
+              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="informatics" type="462c0819:PsiDirectoryNode" />
+              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="informatics" type="462c0819:PsiDirectoryNode" />
+              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="informatics" type="462c0819:PsiDirectoryNode" />
+              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-manager" type="462c0819:PsiDirectoryNode" />
+              <item name="packages" type="462c0819:PsiDirectoryNode" />
+              <item name="informatics" type="462c0819:PsiDirectoryNode" />
               <item name="key" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -569,12 +588,12 @@
       <workItem from="1569250594896" duration="7358000" />
       <workItem from="1569336791296" duration="9077000" />
       <workItem from="1569512525441" duration="17005000" />
-      <workItem from="1569548833820" duration="6937000" />
+      <workItem from="1569548833820" duration="7433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61844000" />
+    <option name="totallyTimeSpent" value="62340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -790,30 +809,6 @@
         <state relative-caret-position="-5837" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="50" column="11" lean-forward="true" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
-          <folding>
-            <element signature="e#53#81#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="111" column="10" lean-forward="true" selection-start-line="111" selection-start-column="10" selection-end-line="111" selection-end-column="10" />
-          <folding>
-            <element signature="e#618#709#0#HTML" expanded="true" />
-            <element signature="e#764#784#0#HTML" expanded="true" />
-            <marker date="1569526466840" expanded="true" signature="70:236" ph="..." />
-            <marker date="1569526466840" expanded="true" signature="107:235" ph="..." />
-            <marker date="1569526466840" expanded="true" signature="144:234" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/informatics/agency/src/views/create/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -995,8 +990,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+        <state relative-caret-position="273">
+          <caret line="46" column="45" lean-forward="true" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="40" column="53" lean-forward="true" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/packages/informatics/analytics/src/Controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+          <folding>
+            <element signature="e#53#81#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

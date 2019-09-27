@@ -18,9 +18,9 @@ class IndexController extends Controller
     public function index(Request $request)
     {
 
-        $userId = isset($request->user_id) ? $request->user_id : '';
-        $action = isset($request->action) ? $request->action : '';
-        $tool = isset($request->tool) ? $request->tool : '';
+        $userId = isset($request->user_id) ? $request->user_id : -1;
+        $action = isset($request->action) ? $request->action : -1;
+        $tool = isset($request->tool) ? $request->tool : -1;
         $fromDate = isset($request->from_date) ? $request->from_date : '';
         $toDate = isset($request->to_date) ? $request->to_date : '';
         $userLoginId = BasicHelper::getUserDetails()->id;
@@ -33,13 +33,13 @@ class IndexController extends Controller
         $query = app(Fee::class)->newQuery()->with(['tool', 'user']);
 
         $query = $query->where(function ($query) use ($userId, $action, $tool, $fromDate, $toDate) {
-            if ($userId != '') {
+            if ($userId != -1) {
                 $query->where('user_id', '=', $userId);
             }
-            if ($action != '') {
+            if ($action != -1) {
                 $query->where('action', '=', $action);
             }
-            if ($tool != '') {
+            if ($tool != -1) {
                 $query->where('tool_id', '=', $tool);
             }
             if ($fromDate != '') {

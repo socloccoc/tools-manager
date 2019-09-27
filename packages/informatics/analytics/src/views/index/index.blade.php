@@ -21,6 +21,7 @@
                     <div class="form-group col-sm-3" style="padding: 0px">
                         <label for="action">Action</label>
                         <select id="action" name="action" class="form-control form-inline">
+                            <option {{ isset($action) && $action == -1 ? 'selected' : '' }} value="-1">--- All ---</option>
                             @forelse(config('constants.key_action') as $index => $st)
                                 <option {{ isset($action) && $action == $st ? 'selected' : '' }} value="{{ $st }}">{{ $index }}</option>
                             @empty
@@ -30,6 +31,7 @@
                     <div class="form-group col-sm-3">
                         <label for="tool">App</label>
                         <select id="tool" name="tool" class="form-control form-inline">
+                            <option {{ isset($tool) && $tool == -1 ? 'selected' : '' }} value="-1">--- All ---</option>
                             @forelse($tools as $tl)
                                 <option {{ isset($tool) && $tool == $tl['id'] ? 'selected' : '' }} value="{{ $tl['id'] }}">{{ $tl['name'] }}</option>
                             @empty
@@ -39,6 +41,7 @@
                     <div class="form-group col-sm-3">
                         <label for="user_id">Collaborators</label>
                         <select id="user_id" name="user_id" class="form-control form-inline">
+                            <option {{ isset($userId) && $userId == -1 ? 'selected' : '' }} value="-1">--- All ---</option>
                             @forelse($users as $index => $user)
                                 <option {{ isset($userId) && $userId == $user['id'] ? 'selected' : '' }} value="{{ $user['id'] }}">{{ $user['name'] }}</option>
                             @empty
