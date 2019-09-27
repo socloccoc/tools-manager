@@ -134,7 +134,7 @@ class IndexController extends Controller
                     'user_id'        => $request->user_id,
                     'licence_key'    => $licenceKey,
                     'point_order'    => isset($request->point_order) ? $request->point_order : 0,
-                    'point_register' => isset($tool->max_point) ? $tool->max_point : 0,
+                    'point_register' => isset($tool->max_point) ? $tool->max_point * $request->expire_time : 0,
                     'user_create_id' => isset($userCreate->id) ? $userCreate->id : 0,
                     'expire_time'    => $request->expire_time,
                     'created_at'     => Carbon::now(),
@@ -228,11 +228,13 @@ class IndexController extends Controller
         try {
             DB::beginTransaction();
             $key = Key::where('id', $request->modal_key_adjourn_id)->first();
+            $tool = Tool::where('id', $key['tool_id'])->first();
             if (!$key) {
                 return Redirect::back()->withErrors(['Key không tồn tại !']);
             }
             $expireDate = $key['expire_date'];
             $newKey['point_order'] = $pointOrder + $key['point_order'];
+            $newKey['point_register'] = $numberOfMonths * $tool['max_point'] + $key['point_register'];
             $newKey['expire_time'] = $numberOfMonths + $key['expire_time'];
             if ($expireDate != '' && $numberOfMonths > 0) {
                 if ($expireDate > Carbon::now()) {
@@ -245,7 +247,6 @@ class IndexController extends Controller
             if (!$keyUpdate) {
                 return Redirect::back()->withErrors(['Gia hạn thất bại']);
             }
-            $tool = Tool::where('id', $key['tool_id'])->first();
 
             $fees = [];
             if($numberOfMonths > 0){
