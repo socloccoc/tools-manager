@@ -15,7 +15,8 @@ class DbAdminRepository implements BaseOperationsInterface
      * @param type $data
      * @author Toinn
      */
-    public function insert($data) {
+    public function insert($data)
+    {
 
     }
 
@@ -26,7 +27,8 @@ class DbAdminRepository implements BaseOperationsInterface
      * @param type $id
      * @author Toinn
      */
-    public function update($data, $id) {
+    public function update($data, $id)
+    {
 
     }
 
@@ -36,7 +38,8 @@ class DbAdminRepository implements BaseOperationsInterface
      * @param type $id
      * @author Toinn
      */
-    public function delete($id) {
+    public function delete($id)
+    {
 
     }
 
@@ -46,41 +49,30 @@ class DbAdminRepository implements BaseOperationsInterface
      * @param type $id
      * @author Toinn
      */
-    public function find($id) {
+    public function find($id)
+    {
 
     }
 
     /**
      * This function returns the list of agents,admin and super admin according permissions.
-     * @param array $filters
-     * @param array $sortInfo
      * @return object $query
      * @author Toinn
      */
-    public function getUserList($filters = array(), $sortInfo = array()) {
+    public function getUserList()
+    {
         $query = DB::table('users')
             ->Join('role_users as usrRoles', 'usrRoles.user_id', '=', 'users.id')
             ->Join('roles as roleName', 'roleName.id', '=', 'usrRoles.role_id')
             ->select('users.id', 'roleName.name as role', 'users.email', 'users.name as full_name', 'users.last_login', 'users.type')
-            ->where(function($que) use ( $filters ) {
-                if (isset($filters['Keyword']) && !empty($filters['Keyword'])) {
-                    $que->Where(function($que) use ( $filters ) {
-                        $que->orWhere('users.name', 'like', '%' . trim($filters['Keyword']) . '%');
-                        $que->orWhere('users.email', 'like', '%' . trim($filters['Keyword']) . '%');
-                    });
-                }
-            })
-            ->where(function($que) {
-                if (Permission::isSuperAdmin()) {
-                    $que->orWhere('usrRoles.role_id', 2);
-                } elseif (Permission::isAgency()) {
+            ->where(function ($que) {
+                $que->where('usrRoles.role_id', 3);
+                if (Permission::isAgency()) {
                     $user = BasicHelper::getUserDetails();
-                    $que->where('usrRoles.role_id', 3);
                     $que->where('users.parent_id', $user->id);
                 }
             })
-            ->groupBy('users.id')
-            ->orderBy((isset($sortInfo['column']) && !empty($sortInfo['column'])) ? $sortInfo['column'] : 'users.created_at', (isset($sortInfo['order']) && !empty($sortInfo['order'])) ? $sortInfo['order'] : 'desc' );
+            ->groupBy('users.id');
 
         return $query;
     }

@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if(\App\Helpers\BasicHelper::getUserDetails()->type == 1)
+                                    @if(\App\Helpers\BasicHelper::getUserDetails()->type == 1 || \App\Helpers\PermissionHelper::isSuperAdmin())
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-3">

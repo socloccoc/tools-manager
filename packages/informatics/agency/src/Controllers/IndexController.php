@@ -3,15 +3,10 @@
 namespace Informatics\Agency\Controllers;
 
 use App\Helpers\BasicHelper;
-use App\Helpers\KeyHelper;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Informatics\Agency\Requests\UserCreateRequest;
 use Informatics\Agency\Requests\UserUpdateRequest;
-use Informatics\Base\Models\AddPointHistory;
-use Informatics\Base\Models\UserApp;
-use Informatics\Tool\Models\Tool;
 use Informatics\Users\Models\User;
 use Informatics\Users\Repositories\Db\DbUsersRepository as UserRepo;
 use Sentinel;
@@ -31,30 +26,23 @@ class IndexController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @author Toinn
      */
-    public function index()
+    public function index(Request $request)
     {
-        $keyword = Input::get('keyword');
-
-        // array to show selected values for search conditions
-        $filters = array(
-            'Keyword' => trim($keyword),
-        );
-
-        $sortInfo = array();
-        if (Input::has('sort') && Input::has('dir')) {
-            $sortInfo['column'] = Input::get('sort');
-            $sortInfo['order'] = Input::get('dir');
-        }
+        $agency = isset($request->agency) ? $request->agency : -1;
+        // role 2 ( agency )
+        $role = Sentinel::findRoleById(2);
+        $agencys = $role->users()->with('roles')->get();
 
         $adminRepo = new AdminRepo();
+        $query = $adminRepo->getUserList();
+        $query = $query->where(function ($query) use ($agency) {
+            if ($agency != -1) {
+                $query->where('parent_id', '=', $agency);
+            }
+        });
+        $users = $query->get();
 
-        $query = $adminRepo->getUserList($filters, $sortInfo);
-        $pagination = $query->paginate('15')->render();
-        $admins = $query->get();
-        //Getting list of sortable columns
-        $columns = $this->getSortableColumn();
-
-        return view('agency::index.index', compact('admins', 'columns', 'pagination', 'filters'));
+        return view('agency::index.index', compact('users', 'agencys', 'agency'));
 
     }
 
