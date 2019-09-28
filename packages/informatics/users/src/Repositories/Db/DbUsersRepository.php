@@ -74,7 +74,7 @@ class DbUsersRepository implements BaseOperationsInterface
         $userDetail = DB::table('users')
             ->leftJoin('role_users as usrRoles', 'usrRoles.user_id', '=', 'users.id')
             ->leftJoin('roles', 'roles.id', '=', 'usrRoles.role_id')
-            ->select('users.id', 'users.username', 'users.email', 'users.avatar as avatar', 'users.name as full_name', 'users.last_login',  DB::raw('group_concat(distinct roles.slug) as roles'), 'roles.id as role_id', 'users.created_at')
+            ->select('users.id', 'users.username', 'users.email', 'users.avatar as avatar', 'users.name as full_name', 'users.last_login',  DB::raw('group_concat(distinct roles.slug) as roles'), 'users.type as type', 'roles.id as role_id', 'users.created_at')
             ->where('users.id', $userId)
             ->groupBy('users.id')
             ->first();

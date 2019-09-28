@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    @if(\App\Helpers\BasicHelper::getUserDetails()->type == 1)
                                     <div class="col-sm-12">
                                         <div class='form-group clearfix'>
                                             <div class="col-sm-3">
@@ -107,6 +107,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="col-sm-12 clearfix">
                                     <a href="{{URL::route('user.index') }}" class="btn btn-link pull-left"><< Back</a>
