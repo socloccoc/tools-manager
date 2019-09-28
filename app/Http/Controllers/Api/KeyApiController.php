@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Informatics\Affiliate\Models\Affiliate;
 use Informatics\Key\Models\Key;
 use Informatics\Tool\Models\Tool;
+use Informatics\Users\Models\User;
 use Symfony\Component\HttpFoundation\Response;
 use Validator;
 use File;
@@ -172,6 +174,27 @@ class KeyApiController extends BaseApiController
             return $this->sendError($ex->getMessage(), Response::HTTP_BAD_REQUEST);
         }
 
+    }
+
+    public function checkUser($key){
+        $keyExpired = $this->checkKeyExpired($key);
+        if($keyExpired){
+            return $this->sendError('Key đã hết hạn !', Response::HTTP_BAD_REQUEST);
+        }
+        $key = Key::where('licence_key', $key)->first();
+        if ($key) {
+            $user = User::where('id', $key->user_id)->first();
+            if(!$user){
+                return $this->sendError('Người dùng không tồn tại !', Response::HTTP_BAD_REQUEST);
+            }
+            if($user->type == 1){
+                return $this->sendResponse($user);
+            }else{
+                $linkAffiliate = Affiliate::all()->random();
+                return response()->json(['success' => false, 'link' => $linkAffiliate->link], Response::HTTP_OK);
+            }
+        }
+        return $this->sendError('Key không hợp lệ !', Response::HTTP_BAD_REQUEST);
     }
 
     protected function checkKeyExist($key, $registered = false)

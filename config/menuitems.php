@@ -6,45 +6,49 @@ return [
      * menu navigation super admin
      */
     'super-admin' => [
-        'Dashboard'     => 'admin.index',
+        'Dashboard' => 'admin.index',
         'Cộng tác viên' => [
             'Danh sách cộng tác viên' => 'admin.index',
-            'Thêm mới cộng tác viên'  => 'admin.create',
+            'Thêm mới cộng tác viên' => 'admin.create',
         ],
-        'Analytics'     => [
+        'Analytics' => [
             'Thống kê' => 'analytics.index'
         ],
-        'Tool'          => [
+        'Tool' => [
             'Danh sách tool' => 'tool.index',
-            'Thêm mới tool'  => 'tool.create',
+            'Thêm mới tool' => 'tool.create',
         ],
-        'Key'           => [
+        'Key' => [
             'Danh sách key' => 'key.index',
-            'Thêm mới key'  => 'key.create',
+            'Thêm mới key' => 'key.create',
+        ],
+        'Affiliate' => [
+            'Danh sách Link' => 'affiliate.index',
+            'Thêm mới Link' => 'affiliate.create',
         ]
     ],
 
     /*
      * menu navigation agency
      */
-    'agency'      => [
-        'Dashboard'  => 'user.index',
+    'agency' => [
+        'Dashboard' => 'user.index',
         'Người dùng' => [
             'Danh sách người dùng' => 'user.index',
-            'Thêm mới người dùng'  => 'user.create'
+            'Thêm mới người dùng' => 'user.create'
         ],
-        'Key'        => [
+        'Key' => [
             'Danh sách key' => 'key.index',
-            'Thêm mới key'  => 'key.create',
+            'Thêm mới key' => 'key.create',
         ],
     ],
 
     /*
      * menu navigation user
      */
-    'user'        => [
+    'user' => [
         'Dashboard' => 'user-key.index',
-        'Key'       => [
+        'Key' => [
             'Danh sách key' => 'user-key.index'
         ],
     ],
@@ -52,16 +56,17 @@ return [
     /*
     * Icons for all
     */
-    'Icons'       => [
-        'Dashboard'        => '<i class="fa fa-home"></i>',
-        'Tài khoản'        => '<i class="fa fa-bar-chart"></i>',
-        'Cộng tác viên'    => '<i class="fa fa-user-secret"></i>',
-        'Người dùng'       => '<i class="fa fa-users"></i>',
+    'Icons' => [
+        'Dashboard' => '<i class="fa fa-home"></i>',
+        'Tài khoản' => '<i class="fa fa-bar-chart"></i>',
+        'Cộng tác viên' => '<i class="fa fa-user-secret"></i>',
+        'Người dùng' => '<i class="fa fa-users"></i>',
         'Super Admin Tool' => '<i class="fa fa-cogs"></i>',
-        'Tool'             => '<i class="fa fa-cogs"></i>',
-        'Key'              => '<i class="fa fa-cogs"></i>',
-        'Analytics'        => '<i class="fa fa-cogs"></i>',
-        'Bố cục website'   => '<i class="fa fa-cogs"></i>',
-        'Pages'            => '<i class="fa fa-cogs"></i>',
+        'Tool' => '<i class="fa fa-cogs"></i>',
+        'Key' => '<i class="fa fa-cogs"></i>',
+        'Analytics' => '<i class="fa fa-cogs"></i>',
+        'Affiliate' => '<i class="fa fa-cogs"></i>',
+        'Bố cục website' => '<i class="fa fa-cogs"></i>',
+        'Pages' => '<i class="fa fa-cogs"></i>',
     ]
 ];

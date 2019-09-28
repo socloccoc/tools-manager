@@ -87,7 +87,7 @@ class IndexController extends Controller
     public function store(UserCreateRequest $request)
     {
         try {
-            $newUser = $request->only('username', 'email', 'password', 'name');
+            $newUser = $request->only('username', 'email', 'password', 'name', 'type');
             DB::beginTransaction();
             $agencyId = BasicHelper::getUserDetails()->id;
             $newUser['parent_id'] = $agencyId;
@@ -128,7 +128,7 @@ class IndexController extends Controller
     public function update(UserUpdateRequest $request, $userId)
     {
         try {
-            $newUser = $request->only('username', 'email', 'name');
+            $newUser = $request->only('username', 'email', 'name', 'type');
             DB::beginTransaction();
             $agencyId = BasicHelper::getUserDetails()->id;
             $newUser['parent_id'] = $agencyId;

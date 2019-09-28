@@ -24,6 +24,7 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Last login</th>
+                        <th>Type</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -41,6 +42,9 @@
                                     {{ $admin->role ? $admin->role : 'N/A'}}
                                 </td>
                                 <td>{!! $admin->last_login && strtotime($admin->last_login) ? date('d/m/Y h:i', strtotime($admin->last_login)) : 'N/A' !!}</td>
+                                <td>
+                                    {!! isset($admin->type) && $admin->type == 1 ? 'Vip' : '' !!}
+                                </td>
                                 <td>
                                     <a class="btn btn-primary" href="{{URL::route('user.edit', $admin->id)}}">
                                         <i class="fa fa-edit"></i>
@@ -65,6 +69,7 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Lass login</th>
+                        <th>Type</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>

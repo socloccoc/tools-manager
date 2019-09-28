@@ -22,7 +22,7 @@ class User extends EloquentUser
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'username', 'email', 'password', 'name', 'last_login', 'avatar'];
+    protected $fillable = ['parent_id', 'username', 'email', 'password', 'name', 'last_login', 'avatar', 'type'];
 
     /**
      * The attributes excluded from the model's JSON form.

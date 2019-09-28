@@ -18,6 +18,11 @@ return [
         'Đã được dùng'   => 1,
         'Còn hạn'        => 2,
         'Hết hạn'        => 3
+    ],
+
+    'user_type' => [
+        'normal' => 0,
+        'vip' => 1
     ]
 
 ];

@@ -91,6 +91,22 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-12">
+                                        <div class='form-group clearfix'>
+                                            <div class="col-sm-3">
+                                                {!! Form::label('type', 'Type *',['class'=>'required']) !!}
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <select id="type" name="type" class="form-control form-inline">
+                                                    @forelse(config('constants.user_type') as $index => $type)
+                                                        <option {{ isset($agency->type) && $agency->type == $type ? 'selected' : '' }} value="{{ $type }}">{{ $index }}</option>
+                                                    @empty
+                                                    @endforelse
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12 clearfix">
                                     <a href="{{URL::route('user.index') }}" class="btn btn-link pull-left"><< Back</a>

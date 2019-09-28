@@ -111,7 +111,7 @@ class IndexController extends Controller
     public function store(SystemAdminCreateRequest $request)
     {
         //Form Data
-        $newUser = $request->only('username', 'email', 'password', 'name');
+        $newUser = $request->only('username', 'email', 'password', 'name', 'type');
         $data = $request->all();
         $userRepo = new UserRepo();
         //Creating new user
@@ -159,6 +159,7 @@ class IndexController extends Controller
 
         $userData['name'] = $request->get('name');
         $userData['username'] = $request->get('username');
+        $userData['type'] = $request->get('type');
         $userRepo->update($userData, $userId);
 
         return Redirect::back()

@@ -103,6 +103,7 @@ class MigrationCartalystSentinel extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('name')->nullable();
             $table->string('avatar', 255)->nullable();
+            $table->tinyInteger('type')->default(0)->comment('0: normal, 1: vip');
             $table->rememberToken();
             $table->timestamps();
 

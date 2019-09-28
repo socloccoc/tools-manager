@@ -60,4 +60,9 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
         'uses' => 'OrderApiController@checkOrder'
     ]);
 
+    Route::get('/checkUser/{key}', [
+        'as'   => 'key.checkUser',
+        'uses' => 'KeyApiController@checkUser'
+    ]);
+
 });
