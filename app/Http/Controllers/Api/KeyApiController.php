@@ -190,8 +190,8 @@ class KeyApiController extends BaseApiController
             if($user->type == 1){
                 return $this->sendResponse($user);
             }else{
-                $linkAffiliate = Affiliate::all()->random();
-                return response()->json(['success' => false, 'link' => $linkAffiliate->link], Response::HTTP_OK);
+                $linkAffiliate = Affiliate::all()->random(1)->first();
+                return response()->json(['success' => false, 'link' => $linkAffiliate['url']], Response::HTTP_OK);
             }
         }
         return $this->sendError('Key không hợp lệ !', Response::HTTP_BAD_REQUEST);
