@@ -21,7 +21,9 @@
                 <table class="table table-bordered" id="orderDataTable">
                     <thead>
                     <tr>
-                        <th>Key</th>
+                        @if(Permission::isSuperAdmin())
+                            <th>User name</th>
+                        @endif
                         <th>Buyer name</th>
                         <th>Product name</th>
                         <th>Shơp name</th>
@@ -33,7 +35,9 @@
                     @if( isset($orders) && count($orders) )
                         @foreach($orders as $order)
                             <tr>
-                                <td>{!! $order->licence_key !!}</td>
+                                @if(Permission::isSuperAdmin())
+                                    <td>{!! $order->user->username !!}</td>
+                                @endif
                                 <td>{!! $order->buyer_name !!}</td>
                                 <td>{!! $order->product_name !!}</td>
                                 <td>{!! $order->shop_name !!}</td>

@@ -58,6 +58,9 @@ return [
         'Key'       => [
             'Danh sách key' => 'user-key.index'
         ],
+        'Order'         => [
+            'Danh sách order' => 'order.list',
+        ]
     ],
 
     /*

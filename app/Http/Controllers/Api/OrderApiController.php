@@ -19,6 +19,7 @@ class OrderApiController extends BaseApiController
         try {
             $validator = Validator::make($request->all(), [
                 'licence_key'    => 'required|max:9',
+                'buyer_name'     => 'required|max:100',
                 'product_name'   => 'required|max:100',
                 'shop_name'      => 'required|max:100',
                 'product_number' => 'required|min:0',
@@ -33,15 +34,13 @@ class OrderApiController extends BaseApiController
                 return $this->sendError('Licence not found !', Response::HTTP_BAD_REQUEST);
             }
 
-            $user = User::where('id', $key['user_id'])->first();
-
             $order = [
-                'licence_key'    => $request->licence_key,
+                'user_id'        => $key['user_id'],
+                'buyer_name'     => $request->buyer_name,
                 'product_name'   => $request->product_name,
                 'shop_name'      => $request->shop_name,
                 'product_number' => $request->product_number,
             ];
-            $order['buyer_name'] = $user['name'];
 
             $order = Order::create($order);
             if ($order) {
@@ -65,7 +64,8 @@ class OrderApiController extends BaseApiController
             if ($validator->fails()) {
                 return $this->sendError($validator->errors()->first(), Response::HTTP_BAD_REQUEST);
             }
-            $order = Order::where('licence_key', $request->licence_key)->where('buyer_name', $request->buyer_name)->first();
+            $key = Key::where('licence_key', $request->licence_key)->first();
+            $order = Order::where('user_id', $key->user_id)->where('buyer_name', $request->buyer_name)->first();
             if ($order) {
                 return $this->sendResponse(true, Response::HTTP_OK);
             }
