@@ -76,18 +76,31 @@
                 <table class="table table-bordered" id="key-datatable">
                     <thead>
                     <tr>
+                        @if(Permission::isSuperAdmin())
+                            <th></th>
+                        @endif
                         <th> App</th>
                         <th> User</th>
                         <th> Licence</th>
                         <th> Value</th>
                         <th> Action</th>
                         <th> Created at</th>
+                        {{--@if(Permission::isSuperAdmin())--}}
+                            {{--<th></th>--}}
+                        {{--@endif--}}
                     </tr>
                     </thead>
                     <tbody>
                     @if( isset($fees) && count($fees) )
                         @foreach($fees as $fee)
                             <tr>
+                                @if(Permission::isSuperAdmin())
+                                    <td>
+                                        <a href="{{URL::route('analytics.edit', $fee->id)}}">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                @endif
                                 <td>{!! $fee['tool']['name'] !!}</td>
                                 <td>{!! $fee['user']['name'] !!}</td>
                                 <td>{!! $fee['licence_key'] !!}</td>
@@ -103,7 +116,7 @@
                     @endif
                     </tbody>
                     <tfoot>
-                        <td></td><td></td>
+                        <td></td><td></td><td></td>
                         <td>Total Value : </td>
                         <td>{{ number_format($totalValue) }}</td>
                         <td></td><td></td>

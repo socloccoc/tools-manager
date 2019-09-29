@@ -7,6 +7,7 @@ use App\Helpers\PermissionHelper;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 use Informatics\Base\Models\Fee;
 use Informatics\Tool\Models\Tool;
 use Sentinel;
@@ -58,5 +59,26 @@ class IndexController extends Controller
             }
         }
         return view('analytics::index.index', compact('fees', 'users', 'userId', 'action', 'tools', 'fromDate', 'toDate', 'totalValue'));
+    }
+
+    public function edit($id)
+    {
+        $fee = Fee::where('id', $id)->first();
+        return view('analytics::create.create', compact('fee'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $fee = $request->only('value');
+            $fee = Fee::where('id', $id)->limit(1)->update($fee);
+            if ($fee) {
+                return Redirect::back()
+                    ->withMessage('Cập nhật thông tin thành công');
+            }
+        } catch (\Exception $ex) {
+            return redirect('manager/analytics')
+                ->with('error_message', $ex->getMessage());
+        }
     }
 }
