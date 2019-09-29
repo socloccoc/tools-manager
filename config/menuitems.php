@@ -11,7 +11,7 @@ return [
             'Danh sách cộng tác viên' => 'admin.index',
             'Thêm mới cộng tác viên'  => 'admin.create',
         ],
-        'Người dùng'          => [
+        'Người dùng'    => [
             'Danh sách người dùng' => 'user.index',
             'Thêm mới người dùng'  => 'user.create',
         ],
@@ -29,6 +29,9 @@ return [
         'Affiliate'     => [
             'Danh sách Link' => 'affiliate.index',
             'Thêm mới Link'  => 'affiliate.create',
+        ],
+        'Order'         => [
+            'Danh sách order' => 'order.list',
         ]
     ],
 
@@ -70,6 +73,7 @@ return [
         'Key'              => '<i class="fa fa-cogs"></i>',
         'Analytics'        => '<i class="fa fa-cogs"></i>',
         'Affiliate'        => '<i class="fa fa-cogs"></i>',
+        'Order'            => '<i class="fa fa-cogs"></i>',
         'Bố cục website'   => '<i class="fa fa-cogs"></i>',
         'Pages'            => '<i class="fa fa-cogs"></i>',
     ]

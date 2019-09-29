@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Informatics\Base\Models\Order;
+use Informatics\Order\Models\Order;
 use Informatics\Key\Models\Key;
 use Informatics\Tool\Models\Tool;
 use Informatics\Users\Models\User;

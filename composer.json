@@ -61,7 +61,8 @@
             "Informatics\\Tool\\": "packages/informatics/tool/src",
             "Informatics\\Key\\": "packages/informatics/key/src",
             "Informatics\\Analytics\\": "packages/informatics/analytics/src",
-            "Informatics\\Affiliate\\": "packages/informatics/affiliate/src"
+            "Informatics\\Affiliate\\": "packages/informatics/affiliate/src",
+            "Informatics\\Order\\": "packages/informatics/order/src"
         }
     },
     "minimum-stability": "dev",

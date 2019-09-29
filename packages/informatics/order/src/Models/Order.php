@@ -1,6 +1,6 @@
 <?php
 
-namespace Informatics\Base\Models;
+namespace Informatics\Order\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Informatics\Tool\Models\Tool;

@@ -10,6 +10,7 @@ use Informatics\Analytics\Providers\InformaticsAnalyticsServiceProvider;
 use Informatics\Assets\Providers\AssetsServiceProvider;
 use Informatics\Auth\Providers\InformaticsAuthServiceProvider;
 use Informatics\Key\Providers\InformaticsKeyServiceProvider;
+use Informatics\Order\Providers\InformaticsOrderServiceProvider;
 use Informatics\Users\Providers\InformaticsUsersServiceProvider;
 use Informatics\Dashboard\Providers\DashboardServiceProvider;
 use Informatics\Tool\Providers\InformaticsToolServiceProvider;
@@ -48,6 +49,7 @@ class BaseServiceProvider extends ServiceProvider
         $this->app->register(InformaticsKeyServiceProvider::class);
         $this->app->register(InformaticsAnalyticsServiceProvider::class);
         $this->app->register(InformaticsAffiliateServiceProvider::class);
+        $this->app->register(InformaticsOrderServiceProvider::class);
 
 
         $this->loadViewsFrom(__DIR__ . '/../views', 'base');
