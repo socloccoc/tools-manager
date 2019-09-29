@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26c79261-aea2-4b88-b16c-bfc8c1d07741" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/OrderApiController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/OrderApiController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/menuitems.php" afterPath="$PROJECT_DIR$/config/menuitems.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_09_27_031318_create_orders_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_09_27_031318_create_orders_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/informatics/order/src/Controllers/IndexController.php" afterPath="$PROJECT_DIR$/packages/informatics/order/src/Controllers/IndexController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/informatics/order/src/Models/Order.php" afterPath="$PROJECT_DIR$/packages/informatics/order/src/Models/Order.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/informatics/order/src/routes/web.php" afterPath="$PROJECT_DIR$/packages/informatics/order/src/routes/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/packages/informatics/order/src/views/index/index.blade.php" afterPath="$PROJECT_DIR$/packages/informatics/order/src/views/index/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,30 +27,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/packages/informatics/order/src/views/index/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="34" column="59" lean-forward="true" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
               <folding>
-                <marker date="1569737427924" expanded="true" signature="70:232" ph="..." />
-                <marker date="1569737427924" expanded="true" signature="107:231" ph="..." />
-                <marker date="1569737427924" expanded="true" signature="142:230" ph="..." />
+                <marker date="1569737509427" expanded="true" signature="70:232" ph="..." />
+                <marker date="1569737509427" expanded="true" signature="107:231" ph="..." />
+                <marker date="1569737509427" expanded="true" signature="142:230" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/packages/informatics/tool/src/views/index/index.blade.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="23" column="55" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="55" />
-              <folding>
-                <marker date="1569592422751" expanded="true" signature="70:230" ph="..." />
-                <marker date="1569592422751" expanded="true" signature="107:229" ph="..." />
-                <marker date="1569592422751" expanded="true" signature="141:228" ph="..." />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseSeeder.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="38" column="34" lean-forward="true" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,7 +85,7 @@
         <entry file="file://$PROJECT_DIR$/packages/informatics/order/src/Models/Order.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="e#44#83#0#PHP" expanded="true" />
               </folding>
@@ -144,7 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/packages/informatics/tool/src/Controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/packages/informatics/users/src/Controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php" />
         <option value="$PROJECT_DIR$/packages/informatics/analytics/src/views/index/index.blade.php" />
@@ -195,6 +194,7 @@
         <option value="$PROJECT_DIR$/config/menuitems.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/OrderApiController.php" />
         <option value="$PROJECT_DIR$/packages/informatics/order/src/views/index/index.blade.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
       </list>
     </option>
   </component>
@@ -394,6 +394,12 @@
               <item name="tools-manager" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-manager" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="seeds" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="tools-manager" type="b2602c69:ProjectViewProjectNode" />
@@ -631,12 +637,12 @@
       <workItem from="1569548833820" duration="8443000" />
       <workItem from="1569595642688" duration="3988000" />
       <workItem from="1569638365827" duration="9840000" />
-      <workItem from="1569725939308" duration="3262000" />
+      <workItem from="1569725939308" duration="4092000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80440000" />
+    <option name="totallyTimeSpent" value="81270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -650,7 +656,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -673,20 +679,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/packages/informatics/tool/src/Controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/packages/informatics/users/src/Controllers/IndexController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="39" column="78" lean-forward="true" selection-start-line="39" selection-start-column="78" selection-end-line="39" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/packages/informatics/users/src/views/index/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -1049,7 +1041,7 @@
     <entry file="file://$PROJECT_DIR$/packages/informatics/order/src/Models/Order.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="e#44#83#0#PHP" expanded="true" />
           </folding>
@@ -1081,10 +1073,26 @@
         <state relative-caret-position="170">
           <caret line="34" column="59" lean-forward="true" selection-start-line="34" selection-start-column="59" selection-end-line="34" selection-end-column="59" />
           <folding>
-            <marker date="1569737427924" expanded="true" signature="70:232" ph="..." />
-            <marker date="1569737427924" expanded="true" signature="107:231" ph="..." />
-            <marker date="1569737427924" expanded="true" signature="142:230" ph="..." />
+            <marker date="1569737509427" expanded="true" signature="70:232" ph="..." />
+            <marker date="1569737509427" expanded="true" signature="107:231" ph="..." />
+            <marker date="1569737509427" expanded="true" signature="142:230" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="38" column="34" lean-forward="true" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

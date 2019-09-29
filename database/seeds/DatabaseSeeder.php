@@ -37,47 +37,47 @@ class DatabaseSeeder extends Seeder
 
         $admin = [
             'username' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'tungdt811@gmail.com',
             'name' => 'Admin',
-            'password' => '123456',
+            'password' => '123456789xX',
         ];
         $adminUser = Sentinel::registerAndActivate($admin);
         $adminUser->roles()->attach($superAdminRole);
 
         $agency = [
             'username' => 'agency',
-            'email' => 'agency@gmail.com',
+            'email' => 'anhnt@gmail.com',
             'name' => 'Agency',
-            'password' => '123456',
+            'password' => '123456789xX',
         ];
 
         $agencyRole = Sentinel::findRoleById(2);
         $agency = Sentinel::registerAndActivate($agency);
         $agencyRole->users()->attach($agency);
 
-        $user = [
-            'username' => 'user',
-            'email' => 'user@gmail.com',
-            'name' => 'User',
-            'password' => '123456',
-        ];
+//        $user = [
+//            'username' => 'user',
+//            'email' => 'user@gmail.com',
+//            'name' => 'User',
+//            'password' => '123456',
+//        ];
+//
+//        $userRole = Sentinel::findRoleById(3);
+//        $user = Sentinel::registerAndActivate($user);
+//        $userRole->users()->attach($user);
 
-        $userRole = Sentinel::findRoleById(3);
-        $user = Sentinel::registerAndActivate($user);
-        $userRole->users()->attach($user);
-
-        $tool = [
-            [
-                'name' => 'tool 1',
-                'max_point' => 1000,
-                'fee' => 1000,
-            ],
-            [
-                'name' => 'tool 2',
-                'max_point' => 2000,
-                'fee' => 2000,
-            ]
-        ];
-        \Informatics\Tool\Models\Tool::insert($tool);
+//        $tool = [
+//            [
+//                'name' => 'tool 1',
+//                'max_point' => 1000,
+//                'fee' => 1000,
+//            ],
+//            [
+//                'name' => 'tool 2',
+//                'max_point' => 2000,
+//                'fee' => 2000,
+//            ]
+//        ];
+//        \Informatics\Tool\Models\Tool::insert($tool);
     }
 }
