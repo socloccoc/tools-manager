@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         $agency = [
             'username' => 'agency',
-            'email' => 'anhnt@gmail.com',
+            'email' => 'tuananhnguyen.bka@gmail.com',
             'name' => 'Agency',
             'password' => '123456789xX',
         ];
