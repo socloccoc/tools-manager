@@ -22,6 +22,8 @@ class OrderApiController extends BaseApiController
                 'buyer_name'     => 'required|max:100',
                 'product_name'   => 'required|max:100',
                 'shop_name'      => 'required|max:100',
+                'address'        => 'required|max:100',
+                'transport'      => 'required|max:100',
                 'product_number' => 'required|min:0',
             ]);
 
@@ -40,6 +42,8 @@ class OrderApiController extends BaseApiController
                 'product_name'   => $request->product_name,
                 'shop_name'      => $request->shop_name,
                 'product_number' => $request->product_number,
+                'address'        => $request->address,
+                'transport'      => $request->transport,
             ];
 
             $order = Order::create($order);

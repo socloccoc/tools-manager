@@ -20,6 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string('product_name', 100);
             $table->string('shop_name', 100);
             $table->integer('product_number');
+            $table->string('address', 100);
+            $table->string('transport', 100);
             $table->timestamps();
         });
     }
