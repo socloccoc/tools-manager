@@ -28,6 +28,8 @@
                         <th>Product name</th>
                         <th>Shơp name</th>
                         <th>Product number</th>
+                        <th>Address</th>
+                        <th>Transport</th>
                         <th>Created at</th>
                     </tr>
                     </thead>
@@ -42,6 +44,8 @@
                                 <td>{!! $order->product_name !!}</td>
                                 <td>{!! $order->shop_name !!}</td>
                                 <td>{!! $order->product_number !!}</td>
+                                <td>{!! $order->address !!}</td>
+                                <td>{!! $order->transport !!}</td>
                                 <td>{!! $order->created_at !!}</td>
                             </tr>
                         @endforeach
