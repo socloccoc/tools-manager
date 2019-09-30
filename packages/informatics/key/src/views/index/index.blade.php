@@ -205,7 +205,7 @@
             });
             // new $.fn.dataTable.FixedHeader(table);
             $('#key-datatable_wrapper').on('click keyup keypress', function () {
-                $('.loadModal').each(function (index, elem) {
+                $('.edit-loadModal').each(function (index, elem) {
                     $(this).on('click', function (e) {
                         var CSRF_TOKEN = $('input[name="_token"]').val();
                         var key_id = $(this).attr('key_id');
