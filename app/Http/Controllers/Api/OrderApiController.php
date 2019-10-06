@@ -18,14 +18,14 @@ class OrderApiController extends BaseApiController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'licence_key'    => 'required|max:9',
-                'buyer_name'     => 'required|max:191',
-                'product_name'   => 'required|max:191',
-                'shop_name'      => 'required|max:191',
-                'address'        => 'required|max:191',
-                'transport'      => 'required|max:191',
-                'status'         => 'required|max:191',
-                'product_number' => 'required|min:0',
+                'licence_key'    => 'max:9',
+                'buyer_name'     => 'max:191',
+                'product_name'   => 'max:191',
+                'shop_name'      => 'max:191',
+                'address'        => 'max:191',
+                'transport'      => 'max:191',
+                'status'         => 'max:191',
+                'product_number' => 'min:0',
             ]);
 
             if ($validator->fails()) {
