@@ -30,6 +30,7 @@
                         <th>Product number</th>
                         <th>Address</th>
                         <th>Transport</th>
+                        <th>Status</th>
                         <th>Created at</th>
                     </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                 <td>{!! $order->product_number !!}</td>
                                 <td>{!! $order->address !!}</td>
                                 <td>{!! $order->transport !!}</td>
+                                <td>{!! $order->status !!}</td>
                                 <td>{!! $order->created_at !!}</td>
                             </tr>
                         @endforeach
