@@ -128,7 +128,7 @@ class IndexController extends Controller
             $keys = [];
             $fees = [];
             for ($i = 0; $i < $request->number; $i++) {
-                $licenceKey = $this->random_strings(9);
+                $licenceKey = $this->random_strings(15);
                 $keys[] = [
                     'tool_id'        => $request->tool_id,
                     'user_id'        => $request->user_id,

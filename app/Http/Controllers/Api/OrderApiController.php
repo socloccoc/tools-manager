@@ -18,7 +18,7 @@ class OrderApiController extends BaseApiController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'licence_key'    => 'max:9',
+                'licence_key'    => 'max:15',
                 'buyer_name'     => 'max:191',
                 'product_name'   => 'max:191',
                 'shop_name'      => 'max:191',
@@ -64,7 +64,7 @@ class OrderApiController extends BaseApiController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'licence_key' => 'required|max:9',
+                'licence_key' => 'required|max:15',
                 'buyer_name'  => 'required|max:100',
             ]);
             if ($validator->fails()) {

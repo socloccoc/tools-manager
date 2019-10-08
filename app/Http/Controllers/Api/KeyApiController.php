@@ -17,12 +17,12 @@ class KeyApiController extends BaseApiController
     public function checkKey(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'key'           => 'required|max:9',
+            'key'           => 'required|max:15',
             'serial_number' => 'required',
             'app_name'      => 'required',
         ], [
             'key.required'           => 'Key không được để trống',
-            'key.max'                => 'Key không được quá 9 ký tự',
+            'key.max'                => 'Key không được quá 15 ký tự',
             'serial_number.required' => 'Serial Number không được để trống',
             'app_name.required'      => 'App Name không được để trống',
         ]);
@@ -111,10 +111,10 @@ class KeyApiController extends BaseApiController
     public function updatePointOrder(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'key' => 'required|max:9',
+            'key' => 'required|max:15',
         ], [
             'key.required' => 'Key không được để trống',
-            'key.max'      => 'Key không được quá 9 ký tự',
+            'key.max'      => 'Key không được quá 15 ký tự',
         ]);
 
         if ($validator->fails()) {
@@ -145,10 +145,10 @@ class KeyApiController extends BaseApiController
     public function updatePointRegister(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'key' => 'required|max:9',
+            'key' => 'required|max:15',
         ], [
             'key.required' => 'Key không được để trống',
-            'key.max'      => 'Key không được quá 9 ký tự',
+            'key.max'      => 'Key không được quá 15 ký tự',
         ]);
 
         if ($validator->fails()) {
