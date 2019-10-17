@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 
-    @include('base::layout.partials.breadcrumb', ['title'=>'Orders', 'breadcrumbs'=>[
+    @include('base::layout.partials.breadcrumb', ['title'=>'Danh sách đơn hàng', 'breadcrumbs'=>[
         ['url'=>'/user', 'label'=>'Bảng điều khiển'],
-        ['label'=>'Orders'],
+        ['label'=>'Danh sách đơn hàng'],
     ]])
 
 @endsection
@@ -24,14 +24,15 @@
                         @if(Permission::isSuperAdmin())
                             <th>User name</th>
                         @endif
-                        <th>Buyer name</th>
-                        <th>Product name</th>
-                        <th>Shơp name</th>
-                        <th>Product number</th>
-                        <th>Address</th>
-                        <th>Transport</th>
-                        <th>Status</th>
-                        <th>Created at</th>
+                        <th>Họ Và Tên</th>
+                        <th>SĐT</th>
+                        <th>Tỉnh</th>
+                        <th>Huyện</th>
+                        <th>Xã</th>
+                        <th>Đường</th>
+                        <th>Tên Store</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Đơn Hàng/Link sp</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -41,14 +42,15 @@
                                 @if(Permission::isSuperAdmin())
                                     <td>{!! $order->user->username !!}</td>
                                 @endif
-                                <td>{!! $order->buyer_name !!}</td>
+                                <td>{!! $order->full_name !!}</td>
+                                <td>{!! $order->phone !!}</td>
+                                <td>{!! $order->province !!}</td>
+                                <td>{!! $order->district !!}</td>
+                                <td>{!! $order->village !!}</td>
+                                <td>{!! $order->street !!}</td>
+                                <td>{!! $order->store_name !!}</td>
                                 <td>{!! $order->product_name !!}</td>
-                                <td>{!! $order->shop_name !!}</td>
-                                <td>{!! $order->product_number !!}</td>
-                                <td>{!! $order->address !!}</td>
-                                <td>{!! $order->transport !!}</td>
-                                <td>{!! $order->status !!}</td>
-                                <td>{!! $order->created_at !!}</td>
+                                <td>{!! $order->product_link !!}</td>
                             </tr>
                         @endforeach
                     @else

@@ -1,22 +1,40 @@
 <?php
 
 
-namespace Informatics\Key\Controllers;
+namespace Informatics\Order\Controllers;
 
 use App\Http\Controllers\Controller;
-use Informatics\Key\Models\Key;
+use Informatics\Base\Models\DataAddress;
+use Informatics\Order\Models\Order;
 use Request;
 
 class AjaxController extends Controller
 {
 
-    public function getKeyInfo(Request $request)
+    public function getDistrictByProvince()
     {
         if (Request::ajax()) {
-            $keyId = Request::get('keyId');
-            return Key::where('id', $keyId)->first();
+            $province = Request::get('province');
+            $district = DataAddress::where('province', $province)
+                ->groupBy('district')
+                ->select('district')
+                ->get();
+            return $district;
         }
     }
 
+    public function getVillageByDistrict()
+    {
+        if (Request::ajax()) {
+            $province = Request::get('province');
+            $district = Request::get('district');
+            $village = DataAddress::where('district', $district)
+                ->where('province', $province)
+                ->groupBy('village')
+                ->select('village')
+                ->get();
+            return $village;
+        }
+    }
 
 }

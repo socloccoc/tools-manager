@@ -59,7 +59,9 @@ return [
             'Danh sách key' => 'user-key.index'
         ],
         'Order'         => [
-            'Danh sách order' => 'order.list',
+            'Danh sách order ( API )' => 'order.list',
+            'Tạo đơn hàng' => 'order.create',
+            'Danh sách order' => 'order.list.web',
         ]
     ],
 

@@ -4,9 +4,8 @@
 namespace Informatics\Order\Requests;
 
 use App\Http\Requests\Request;
-use Permission;
 
-class KeyCreateRequest extends Request
+class OrderCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +25,20 @@ class KeyCreateRequest extends Request
     public function rules()
     {
         $rules = [
-            'fullname' => 'required',
-            'user_id' => 'required',
-            'point_order' => 'required|integer',
-            'number' => 'required|integer|max:1000',
-            'expire_time' => 'required|integer|max:1000',
+            'full_name'    => 'required',
+            'phone'        => 'required',
+            'province'     => 'required',
+            'district'     => 'required',
+            'village'      => 'required',
+            'street'       => 'required',
+            'store_name'   => 'required',
+            'product_name' => 'required',
+            'product_link' => '',
+            'quantity'     => 'required',
+            'option_1'     => 'required',
+            'option_2'     => 'required',
+            'promo_code'   => '',
+            'transport'    => '',
         ];
 
         return $rules;

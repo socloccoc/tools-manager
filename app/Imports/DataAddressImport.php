@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Store;
+use Informatics\Base\Models\DataAddress;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class StoreImport implements ToModel
+class DataAddressImport implements ToModel
 {
     /**
      * @param array $row
@@ -14,8 +14,10 @@ class StoreImport implements ToModel
      */
     public function model(array $row)
     {
-        return new Store([
-            'url' => $row[0],
+        return new DataAddress([
+            'province' => $row[0],
+            'district' => $row[1],
+            'village' => $row[2],
         ]);
     }
 }
