@@ -124,7 +124,7 @@ class IndexController extends Controller
             $dataExcel = [];
             foreach ($dataExport as $index => $item){
                 unset($item['user_id']);
-                $dataExcel = $item;
+                $dataExcel[] = $item;
             }
 
             $dataExcel = new KeyExport([$dataExcel], $header);
