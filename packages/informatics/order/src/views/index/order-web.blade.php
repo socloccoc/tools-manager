@@ -81,7 +81,8 @@
                         <th>Đường</th>
                         <th>Tên Store</th>
                         <th>Tên Sản Phẩm</th>
-                        <th>Đơn Hàng/Link sp</th>
+                        <th>Số Lượng</th>
+                        <th>Vận Chuyển</th>
                         <th>Phiên</th>
                     </tr>
                     </thead>
@@ -100,7 +101,8 @@
                                 <td>{!! $order['street'] !!}</td>
                                 <td>{!! $order['store_name'] !!}</td>
                                 <td>{!! $order['product_name'] !!}</td>
-                                <td>{!! $order['product_link'] !!}</td>
+                                <td>{!! $order['quantity'] !!}</td>
+                                <td>{!! $order['transport'] !!}</td>
                                 <td>{!! $order['session'] !!}</td>
                             </tr>
                         @endforeach

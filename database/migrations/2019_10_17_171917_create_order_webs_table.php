@@ -24,11 +24,11 @@ class CreateOrderWebsTable extends Migration
             $table->string('street', 191);
             $table->string('store_name', 191);
             $table->string('product_name', 191);
-            $table->string('product_link', 191);
+            $table->string('product_link', 191)->nullable();
             $table->integer('quantity');
-            $table->string('option_1', 191);
-            $table->string('option_2', 191);
-            $table->string('promo_code', 191);
+            $table->string('option_1', 191)->nullable();
+            $table->string('option_2', 191)->nullable();
+            $table->string('promo_code', 191)->nullable();
             $table->string('transport', 191);
             $table->timestamps();
         });
