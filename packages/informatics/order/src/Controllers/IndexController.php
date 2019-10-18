@@ -104,8 +104,8 @@ class IndexController extends Controller
                     'product_name' => 'required|max:191',
                     'product_link' => 'max:191',
                     'quantity'     => 'required|integer',
-                    'option_1'     => 'required|max:191',
-                    'option_2'     => 'required|max:191',
+                    'option_1'     => 'max:191',
+                    'option_2'     => 'max:191',
                     'promo_code'   => 'max:191',
                     'transport'    => 'required|max:191',
                 ], []);

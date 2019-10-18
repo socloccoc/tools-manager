@@ -95,12 +95,12 @@
 
                             <div class="col-sm-4">
                                 <label class="control-label" for="option_1">Lựa chọn 1:</label>
-                                <input required maxlength="191" type="text" class="form-control" name="option_1[]">
+                                <input maxlength="191" type="text" class="form-control" name="option_1[]">
                             </div>
 
                             <div class="col-sm-4">
                                 <label class="control-label" for="option_2">Lựa chọn 2:</label>
-                                <input required maxlength="191" type="text" class="form-control" name="option_2[]">
+                                <input maxlength="191" type="text" class="form-control" name="option_2[]">
                             </div>
 
                             <div class="col-sm-4">
