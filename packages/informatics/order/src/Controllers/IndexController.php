@@ -7,6 +7,7 @@ use App\Helpers\PermissionHelper;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Informatics\Base\Models\OrderWeb;
+use Informatics\Users\Models\User;
 use Sentinel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,8 +46,12 @@ class IndexController extends Controller
     public function orderWeb(Request $request)
     {
         // role 3 ( user )
+        $userLoginId = BasicHelper::getUserDetails()->id;
         $role = Sentinel::findRoleById(3);
         $users = $role->users()->with('roles')->get();
+        if (PermissionHelper::isAgency()) {
+            $users = User::where('id', '!=', $userLoginId)->where('parent_id', $userLoginId)->get();
+        }
 
         $userId = isset($request->user_id) ? $request->user_id : -1;
         $date = isset($request->date) ? $request->date : '';
@@ -74,9 +79,12 @@ class IndexController extends Controller
             }
         });
 
-        $userLoginId = BasicHelper::getUserDetails()->id;
-        if (!PermissionHelper::isSuperAdmin()) {
+        if (PermissionHelper::isUser()) {
             $query = $query->where('user_id', $userLoginId);
+        }
+        if (PermissionHelper::isAgency()) {
+            $ids = User::where('parent_id', $userLoginId)->pluck('id')->toArray();
+            $query = $query->whereIn('user_id', $ids);
         }
         $query = $query->select('order_webs.*', DB::raw('SUBSTRING(order_webs.created_at, 12, 21) as session'));
         $orders = $query->get()->toArray();
