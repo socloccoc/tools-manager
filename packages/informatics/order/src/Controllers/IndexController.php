@@ -42,14 +42,64 @@ class IndexController extends Controller
         return view('order::index.index', compact('orders'));
     }
 
-    public function orderWeb(){
-        $query = app(OrderWeb::class)->with('user')->newQuery();
-        $userId = BasicHelper::getUserDetails()->id;
-        if (!PermissionHelper::isSuperAdmin()) {
-            $query = $query->where('user_id', $userId);
+    public function orderWeb(Request $request)
+    {
+        // role 3 ( user )
+        $role = Sentinel::findRoleById(3);
+        $users = $role->users()->with('roles')->get();
+
+        $userId = isset($request->user_id) ? $request->user_id : -1;
+        $date = isset($request->date) ? $request->date : '';
+        $session = isset($request['session']) ? $request['session'] : -1;
+
+        $sessions = [];
+        if (isset($request->date)) {
+            $sessions = OrderWeb::where(DB::raw('SUBSTRING(order_webs.created_at, 1, 10)'), $date)
+                ->select(DB::raw('SUBSTRING(order_webs.created_at, 12, 22) as session'))
+                ->groupBy('session')
+                ->get();
         }
-        $orders = $query->get();
-        return view('order::index.order-web', compact('orders'));
+
+        $query = app(OrderWeb::class)->with('user')->newQuery();
+
+        $query = $query->where(function ($query) use ($userId, $date, $session) {
+            if ($userId != -1) {
+                $query->where('user_id', '=', $userId);
+            }
+            if ($session != -1) {
+                $query->where(DB::raw('SUBSTRING(order_webs.created_at, 12, 22)'), '=', $session);
+            }
+            if ($date != '') {
+                $query->where(DB::raw('SUBSTRING(order_webs.created_at, 1, 10)'), '=', $date);
+            }
+        });
+
+        $userLoginId = BasicHelper::getUserDetails()->id;
+        if (!PermissionHelper::isSuperAdmin()) {
+            $query = $query->where('user_id', $userLoginId);
+        }
+        $query = $query->select('order_webs.*', DB::raw('SUBSTRING(order_webs.created_at, 12, 21) as session'));
+        $orders = $query->get()->toArray();
+
+        // if export
+        if (isset($request->export)) {
+            $dataExcel = [];
+            if (count($orders) > 0) {
+                foreach ($orders as $index => $order) {
+                    unset($order['user_id'], $order['created_at'], $order['updated_at'], $order['session'], $order['user']);
+                    $order['id'] = $index + 1;
+                    $dataExcel[] = $order;
+                }
+            }
+
+            $header = $this->getHeader();
+            $dataExcel = new KeyExport([$dataExcel], $header);
+
+            $excel = Excel::download($dataExcel, "data_order_" . Carbon::now()->format('Y-m-d-his') . ".xlsx");
+            return $excel;
+        }
+
+        return view('order::index.order-web', compact('orders', 'users', 'userId', 'date', 'session', 'sessions'));
     }
 
     /**
@@ -76,6 +126,7 @@ class IndexController extends Controller
             $orders = $request->all();
 
             $dataExport = [];
+            $currentDate = Carbon::now();
             for ($i = 0; $i < count($orders['full_name']); $i++) {
                 $order['user_id'] = $userCreate->id;
                 $order['full_name'] = $orders['full_name'][$i];
@@ -92,8 +143,10 @@ class IndexController extends Controller
                 $order['option_2'] = $orders['option_2'][$i];
                 $order['promo_code'] = $orders['promo_code'][$i];
                 $order['transport'] = $orders['transport'][$i];
+                $order['created_at'] = $currentDate;
+                $order['updated_at'] = $currentDate;
                 $validator = Validator::make($order, [
-                    'user_id'    => 'required',
+                    'user_id'      => 'required',
                     'full_name'    => 'required|max:191',
                     'phone'        => 'required|max:20',
                     'province'     => 'required|max:191',
@@ -122,7 +175,8 @@ class IndexController extends Controller
             $header = $this->getHeader();
 
             $dataExcel = [];
-            foreach ($dataExport as $index => $item){
+            foreach ($dataExport as $index => $item) {
+                array_unshift($item, $index + 1);
                 unset($item['user_id']);
                 $dataExcel[] = $item;
             }
@@ -141,6 +195,7 @@ class IndexController extends Controller
     private function getHeader()
     {
         return $header = [
+            'STT',
             'HỌ VÀ TÊN',
             'SĐT',
             'Tỉnh',

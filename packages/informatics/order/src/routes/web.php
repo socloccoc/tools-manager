@@ -2,9 +2,10 @@
 
 Route::group(['namespace' => 'Informatics\Order\Controllers', 'prefix' => 'manager', 'middleware' => 'loggedIn'], function () {
 
+    Route::resource('order', 'IndexController');
 
     Route::get('/order', [
-        'as'   => 'order.list',
+        'as'   => 'order.list.api',
         'uses' => 'IndexController@index'
     ]);
 
@@ -13,7 +14,7 @@ Route::group(['namespace' => 'Informatics\Order\Controllers', 'prefix' => 'manag
         'uses' => 'IndexController@orderWeb'
     ]);
 
-    Route::resource('order', 'IndexController');
+
 
 });
 
@@ -26,6 +27,10 @@ Route::group(['namespace' => 'Informatics\Order\Controllers', 'prefix' => 'order
         Route::get('getVillageByDistrict', [
             'as'   => 'getVillageByDistrict',
             'uses' => 'AjaxController@getVillageByDistrict'
+        ]);
+        Route::get('getSessionByDate', [
+            'as'   => 'getSessionByDate',
+            'uses' => 'AjaxController@getSessionByDate'
         ]);
     });
 });

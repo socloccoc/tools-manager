@@ -4,7 +4,9 @@
 namespace Informatics\Order\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Informatics\Base\Models\DataAddress;
+use Informatics\Base\Models\OrderWeb;
 use Informatics\Order\Models\Order;
 use Request;
 
@@ -34,6 +36,17 @@ class AjaxController extends Controller
                 ->select('village')
                 ->get();
             return $village;
+        }
+    }
+
+    public function getSessionByDate(){
+        if (Request::ajax()) {
+            $date = Request::get('date');
+            $session = OrderWeb::where(DB::raw('SUBSTRING(order_webs.created_at, 1, 10)'), $date)
+                ->select(DB::raw('SUBSTRING(order_webs.created_at, 12, 22) as session'))
+                ->groupBy('session')
+                ->get();
+            return $session;
         }
     }
 

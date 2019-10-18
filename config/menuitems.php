@@ -31,7 +31,8 @@ return [
             'Thêm mới Link'  => 'affiliate.create',
         ],
         'Order'         => [
-            'Danh sách order' => 'order.list',
+            'Danh sách order ( API )' => 'order.list.api',
+            'Danh sách order'         => 'order.list.web',
         ]
     ],
 
@@ -48,6 +49,9 @@ return [
             'Danh sách key' => 'key.index',
             'Thêm mới key'  => 'key.create',
         ],
+        'Order'      => [
+            'Danh sách order' => 'order.list.web',
+        ]
     ],
 
     /*
@@ -58,10 +62,10 @@ return [
         'Key'       => [
             'Danh sách key' => 'user-key.index'
         ],
-        'Order'         => [
-            'Danh sách order ( API )' => 'order.list',
-            'Tạo đơn hàng' => 'order.create',
-            'Danh sách order' => 'order.list.web',
+        'Order'     => [
+            'Danh sách order ( API )' => 'order.list.api',
+            'Tạo đơn hàng'            => 'order.create',
+            'Danh sách order'         => 'order.list.web',
         ]
     ],
 
