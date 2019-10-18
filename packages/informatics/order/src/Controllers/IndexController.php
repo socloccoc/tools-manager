@@ -103,7 +103,7 @@ class IndexController extends Controller
                     'store_name'   => 'required|max:191',
                     'product_name' => 'required|max:191',
                     'product_link' => 'max:191',
-                    'quantity'     => 'required|integer|max:191',
+                    'quantity'     => 'required|integer',
                     'option_1'     => 'required|max:191',
                     'option_2'     => 'required|max:191',
                     'promo_code'   => 'max:191',
