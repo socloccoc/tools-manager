@@ -28,17 +28,19 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-sm-3">
-                        <label for="user_id">User</label>
-                        <select id="user_id" name="user_id" class="form-control form-inline">
-                            <option {{ isset($userId) && $userId == -1 ? 'selected' : '' }} value="-1">--- All ---
-                            </option>
-                            @forelse($users as $index => $user)
-                                <option {{ isset($userId) && $userId == $user['id'] ? 'selected' : '' }} value="{{ $user['id'] }}">{{ $user['name'] }}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                    </div>
+                    @if(!Permission::isUser())
+                        <div class="form-group col-sm-3">
+                            <label for="user_id">User</label>
+                            <select id="user_id" name="user_id" class="form-control form-inline">
+                                <option {{ isset($userId) && $userId == -1 ? 'selected' : '' }} value="-1">--- All ---
+                                </option>
+                                @forelse($users as $index => $user)
+                                    <option {{ isset($userId) && $userId == $user['id'] ? 'selected' : '' }} value="{{ $user['id'] }}">{{ $user['name'] }}</option>
+                                @empty
+                                @endforelse
+                            </select>
+                        </div>
+                    @endif
 
                     <div class="form-group col-sm-3">
                         <label for="session">Session</label>
