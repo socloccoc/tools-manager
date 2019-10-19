@@ -60,6 +60,15 @@ class IndexController extends Controller
         $sessions = [];
         if (isset($request->date)) {
             $sessions = OrderWeb::where(DB::raw('SUBSTRING(order_webs.created_at, 1, 10)'), $date)
+                ->where(function ($query) use ($userLoginId) {
+                    if (PermissionHelper::isUser()) {
+                        $query->where('user_id', $userLoginId);
+                    }
+                    if (PermissionHelper::isAgency()) {
+                        $ids = User::where('parent_id', $userLoginId)->pluck('id')->toArray();
+                        $query->whereIn('user_id', $ids);
+                    }
+                })
                 ->select(DB::raw('SUBSTRING(order_webs.created_at, 12, 22) as session'))
                 ->groupBy('session')
                 ->get();
