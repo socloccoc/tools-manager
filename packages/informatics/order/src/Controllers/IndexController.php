@@ -164,8 +164,8 @@ class IndexController extends Controller
                 $order['updated_at'] = $currentDate;
                 $validator = Validator::make($order, [
                     'user_id'      => 'required',
-                    'full_name'    => 'required|max:191',
-                    'phone'        => 'required|max:20',
+                    'full_name'    => 'max:191',
+                    'phone'        => 'max:20',
                     'province'     => 'required|max:191',
                     'district'     => 'required|max:191',
                     'village'      => 'required|max:191',

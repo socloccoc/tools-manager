@@ -34,13 +34,13 @@
                             </div>
                             <div class="col-sm-4">
                                 <label class="control-label" for="full_name">Họ và tên:</label>
-                                <input type="text" class="form-control" required maxlength="191" name="full_name[]"
+                                <input type="text" class="form-control" maxlength="191" name="full_name[]"
                                        placeholder="Họ và tên">
                             </div>
 
                             <div class="col-sm-4">
                                 <label class="control-label" for="phone">SĐT:</label>
-                                <input type="tel" class="form-control" required maxlength="20" name="phone[]"
+                                <input type="tel" class="form-control" maxlength="20" name="phone[]"
                                        placeholder="0987654321">
                             </div>
 

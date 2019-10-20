@@ -16,8 +16,8 @@ class CreateOrderWebsTable extends Migration
         Schema::create('order_webs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->string('full_name', 191);
-            $table->string('phone', 20);
+            $table->string('full_name', 191)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->string('province', 191);
             $table->string('district', 191);
             $table->string('village', 191);
